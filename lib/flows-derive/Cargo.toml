@@ -1,0 +1,30 @@
+# See: https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[package]
+name = "flows-derive"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+#rust-version.workspace = true
+description.workspace = true
+#documentation.workspace = true
+readme.workspace = true
+homepage.workspace = true
+repository.workspace = true
+license.workspace = true
+keywords.workspace = true
+categories.workspace = true
+publish.workspace = true
+
+[features]
+default = ["all", "std"]
+all = []
+std = ["async-flow/std"]
+unstable = []
+
+[dependencies]
+async-flow.workspace = true
+
+[target.'cfg(not(target_family = "wasm"))'.dependencies]
+
+[target.'cfg(target_family = "wasm")'.dependencies]

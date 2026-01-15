@@ -1,7 +1,22 @@
 # See: https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[package]
-name = "flows"
+[workspace]
+members = ["lib/*"]
+default-members = [
+    "lib/flows",
+    "lib/flows-audio",
+    "lib/flows-derive",
+    "lib/flows-hash",
+    "lib/flows-image",
+    "lib/flows-io",
+    "lib/flows-json",
+    "lib/flows-math",
+    "lib/flows-rand",
+    "lib/flows-text"
+]
+resolver = "2"
+
+[workspace.package]
 version = "0.0.0"
 authors = ["Arto Bendiken"]
 edition = "2024"
@@ -16,15 +31,29 @@ keywords = ["fbp", "flow", "dataflow"]
 categories = []
 publish = true
 
-[features]
-default = ["all", "std"]
-all = []
-std = []
-unstable = []
+[workspace.dependencies]
+flows = "0.0.0"
+flows-audio = "0.0.0"
+flows-derive = "0.0.0"
+flows-hash = "0.0.0"
+flows-image = "0.0.0"
+flows-io = "0.0.0"
+flows-json = "0.0.0"
+flows-math = "0.0.0"
+flows-rand = "0.0.0"
+flows-text = "0.0.0"
 
-[build-dependencies]
-
-[dependencies]
-async-flow = "0"
+#async-flow = { version = "0", default-features = false, features = ["tokio"] }
+async-flow = { version = "0", default-features = false, features = [] }
 
 [patch.crates-io]
+flows = { path = "lib/flows" }
+flows-audio = { path = "lib/flows-audio" }
+flows-derive = { path = "lib/flows-derive" }
+flows-hash = { path = "lib/flows-hash" }
+flows-image = { path = "lib/flows-image" }
+flows-io = { path = "lib/flows-io" }
+flows-json = { path = "lib/flows-json" }
+flows-math = { path = "lib/flows-math" }
+flows-rand = { path = "lib/flows-rand" }
+flows-text = { path = "lib/flows-text" }
