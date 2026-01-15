@@ -1,0 +1,30 @@
+# See: https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[package]
+name = "flows"
+version = "0.0.0"
+authors = ["Arto Bendiken"]
+edition = "2024"
+#rust-version = "1.85"
+description = "Building blocks for flow-based programming (FBP) in Rust."
+#documentation = "https://docs.rs/flows"
+readme = true
+homepage = "https://flows.rs"
+repository = "https://github.com/artob/flows.rs"
+license = "Unlicense"
+keywords = ["fbp", "flow", "dataflow"]
+categories = []
+publish = true
+
+[features]
+default = ["all", "std"]
+all = []
+std = []
+unstable = []
+
+[build-dependencies]
+
+[dependencies]
+async-flow = "0"
+
+[patch.crates-io]
