@@ -17,7 +17,7 @@ default-members = [
 resolver = "2"
 
 [workspace.package]
-version = "0.0.0"
+version = "0.0.1"
 authors = ["Arto Bendiken"]
 edition = "2024"
 #rust-version = "1.85"
@@ -32,16 +32,16 @@ categories = []
 publish = true
 
 [workspace.dependencies]
-flows = "0.0.0"
-flows-audio = "0.0.0"
-flows-derive = "0.0.0"
-flows-hash = "0.0.0"
-flows-image = "0.0.0"
-flows-io = "0.0.0"
-flows-json = "0.0.0"
-flows-math = "0.0.0"
-flows-rand = "0.0.0"
-flows-text = "0.0.0"
+flows = "0.0.1"
+flows-audio = "0.0.1"
+flows-derive = "0.0.1"
+flows-hash = "0.0.1"
+flows-image = "0.0.1"
+flows-io = "0.0.1"
+flows-json = "0.0.1"
+flows-math = "0.0.1"
+flows-rand = "0.0.1"
+flows-text = "0.0.1"
 
 #async-flow = { version = "0", default-features = false, features = ["tokio"] }
 async-flow = { version = "0", default-features = false, features = [] }
