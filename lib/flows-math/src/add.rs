@@ -1,9 +1,6 @@
 // This is free and unencumbered software released into the public domain.
 
-use async_flow::{
-    io::Result,
-    tokio::{Inputs, Outputs},
-};
+use async_flow::{Inputs, Outputs, Result};
 use core::ops::Add;
 use tokio::try_join;
 
@@ -28,7 +25,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_add() {
-        use async_flow::{io::Port, tokio::bounded};
+        use async_flow::{Port, bounded};
 
         let (mut lhs_tx, lhs_rx) = bounded(1);
         let (mut rhs_tx, rhs_rx) = bounded(1);

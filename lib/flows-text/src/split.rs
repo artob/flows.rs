@@ -1,10 +1,7 @@
 // This is free and unencumbered software released into the public domain.
 
 use alloc::string::String;
-use async_flow::{
-    io::Result,
-    tokio::{Inputs, Outputs},
-};
+use async_flow::{Inputs, Outputs, Result};
 
 /// A block that splits input strings based on a delimiter.
 pub async fn split_string(
@@ -27,7 +24,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_split_string() {
-        use async_flow::{io::Port, tokio::bounded};
+        use async_flow::{Port, bounded};
 
         let (mut in_tx, in_rx) = bounded(1);
         let (out_tx, mut out_rx) = bounded(10);

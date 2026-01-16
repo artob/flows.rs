@@ -9,8 +9,7 @@ extern crate alloc;
 #[cfg(feature = "std")]
 extern crate std;
 
-pub use async_flow::io::*;
-pub use async_flow::tokio::*;
+pub use async_flow::*;
 
 #[cfg(feature = "audio")]
 pub use flows_audio as audio;

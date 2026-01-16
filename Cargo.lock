@@ -4,7 +4,9 @@ version = 4
 
 [[package]]
 name = "async-flow"
-version = "0.0.0"
+version = "0.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "21973c294d67ff54c88b28fb90c8b7c9649c08edacc998b2e5acfaa19949a0c1"
 dependencies = [
  "async-trait",
  "dogma",
