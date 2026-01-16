@@ -24,7 +24,11 @@ unstable = []
 
 [dependencies]
 async-flow.workspace = true
+tokio.workspace = true
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 
 [target.'cfg(target_family = "wasm")'.dependencies]
+
+[dev-dependencies]
+tokio.workspace = true
