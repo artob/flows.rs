@@ -44,7 +44,7 @@ dependencies = [
 
 [[package]]
 name = "flows"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "async-flow",
  "flows-audio",
@@ -61,49 +61,49 @@ dependencies = [
 
 [[package]]
 name = "flows-audio"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "async-flow",
 ]
 
 [[package]]
 name = "flows-derive"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "async-flow",
 ]
 
 [[package]]
 name = "flows-hash"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "async-flow",
 ]
 
 [[package]]
 name = "flows-image"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "async-flow",
 ]
 
 [[package]]
 name = "flows-io"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "async-flow",
 ]
 
 [[package]]
 name = "flows-json"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "async-flow",
 ]
 
 [[package]]
 name = "flows-math"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "async-flow",
  "tokio",
@@ -111,14 +111,14 @@ dependencies = [
 
 [[package]]
 name = "flows-rand"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "async-flow",
 ]
 
 [[package]]
 name = "flows-text"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "async-flow",
  "tokio",

@@ -17,7 +17,7 @@ default-members = [
 resolver = "2"
 
 [workspace.package]
-version = "0.0.1"
+version = "0.0.2"
 authors = ["Arto Bendiken"]
 edition = "2024"
 #rust-version = "1.85"
@@ -32,16 +32,16 @@ categories = ["asynchronous", "concurrency", "network-programming", "no-std"]
 publish = true
 
 [workspace.dependencies]
-flows = { version = "0.0.1", default-features = false }
-flows-audio = { version = "0.0.1", default-features = false }
-flows-derive = { version = "0.0.1", default-features = false }
-flows-hash = { version = "0.0.1", default-features = false }
-flows-image = { version = "0.0.1", default-features = false }
-flows-io = { version = "0.0.1", default-features = false }
-flows-json = { version = "0.0.1", default-features = false }
-flows-math = { version = "0.0.1", default-features = false }
-flows-rand = { version = "0.0.1", default-features = false }
-flows-text = { version = "0.0.1", default-features = false }
+flows = { version = "0.0.2", default-features = false }
+flows-audio = { version = "0.0.2", default-features = false }
+flows-derive = { version = "0.0.2", default-features = false }
+flows-hash = { version = "0.0.2", default-features = false }
+flows-image = { version = "0.0.2", default-features = false }
+flows-io = { version = "0.0.2", default-features = false }
+flows-json = { version = "0.0.2", default-features = false }
+flows-math = { version = "0.0.2", default-features = false }
+flows-rand = { version = "0.0.2", default-features = false }
+flows-text = { version = "0.0.2", default-features = false }
 
 async-flow = { version = "0.0.1", default-features = false, features = ["tokio"] }
 tokio = { version = "1.49", default-features = false, features = ["macros", "rt", "sync"] }
