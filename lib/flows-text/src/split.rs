@@ -2,12 +2,12 @@
 
 use alloc::string::String;
 use async_flow::{
-    io::{Port, Result},
-    tokio::{Inputs, Outputs, System},
+    io::Result,
+    tokio::{Inputs, Outputs},
 };
 
 /// A block that splits strings based on a delimiter.
-async fn split_string(
+pub async fn split_string(
     delimiter: String,
     mut inputs: Inputs<String>,
     outputs: Outputs<String>,
@@ -26,7 +26,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_split_string() {
-        use async_flow::tokio::bounded;
+        use async_flow::{io::Port, tokio::bounded};
 
         let (mut in_tx, in_rx) = bounded(1);
         let (out_tx, mut out_rx) = bounded(10);
@@ -38,7 +38,7 @@ mod tests {
         }
         in_tx.close();
 
-        tokio::join!(splitter);
+        let _ = tokio::join!(splitter);
 
         let outputs = out_rx.recv_all().await.unwrap();
         assert_eq!(

@@ -1,15 +1,14 @@
 // This is free and unencumbered software released into the public domain.
 
-use alloc::string::String;
 use async_flow::{
-    io::{Port, Result},
-    tokio::{Inputs, Outputs, System},
+    io::Result,
+    tokio::{Inputs, Outputs},
 };
 use core::ops::Add;
 use tokio::try_join;
 
 /// A block that outputs the sums of input numbers.
-async fn add<T>(mut lhs: Inputs<T>, mut rhs: Inputs<T>, sums: Outputs<T>) -> Result
+pub async fn add<T>(mut lhs: Inputs<T>, mut rhs: Inputs<T>, sums: Outputs<T>) -> Result
 where
     T: Add<Output = T>,
 {
@@ -29,7 +28,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_add() {
-        use async_flow::tokio::bounded;
+        use async_flow::{io::Port, tokio::bounded};
 
         let (mut lhs_tx, lhs_rx) = bounded(1);
         let (mut rhs_tx, rhs_rx) = bounded(1);
@@ -42,6 +41,8 @@ mod tests {
 
         rhs_tx.send(2).await.unwrap();
         rhs_tx.close();
+
+        let _ = tokio::join!(adder);
 
         let sum = sums_rx.recv().await.unwrap();
         assert_eq!(sum, Some(3));
