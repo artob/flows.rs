@@ -5,9 +5,30 @@
 [![Package](https://img.shields.io/crates/v/flows)](https://crates.io/crates/flows)
 [![Documentation](https://docs.rs/flows/badge.svg)](https://docs.rs/flows)
 
-Building blocks for flow-based programming (FBP) in Rust.
+_"Τὰ πάντα ῥεῖ καὶ οὐδὲν μένει" — Heraclitus_
 
-🚧 _We are building in public. This is presently under heavy construction._
+**Building blocks for [flow-based programming] (FBP) in Rust.**
+This collection of crates implements a growing shrink-wrap inventory of
+standard dataflow blocks for common use cases.
+
+> [!TIP]
+> 🚧 _We are building in public. This is presently under heavy construction._
+
+[[Features](#-features)] |
+[[Prerequisites](#%EF%B8%8F-prerequisites)] |
+[[Installation](#%EF%B8%8F-installation)] |
+[[Examples](#-examples)] |
+[[Reference](#-reference)] |
+[[Development](#-development)]
+
+## ✨ Features
+
+- Provides components for flow-based programming (FBP) based on [Tokio].
+- Supports dataflow systems by providing reusable components called blocks.
+- Built on the primitives provided by the [Async-Flow] project.
+- Supports opting out of any feature using comprehensive feature flags.
+- Adheres to the Rust API Guidelines in its [naming conventions].
+- No licensing headaches: 100% free and unencumbered public domain software.
 
 ## 🛠️ Prerequisites
 
@@ -23,13 +44,13 @@ cargo add flows
 
 ## 👉 Examples
 
-### Importing the library
+### Importing the Library
 
 ```rust
-use flows::*;
+use flows::{audio, hash, image, io, json, math, rand, text};
 ```
 
-### Implementing blocks
+### Implementing Blocks
 
 #### Implementing a `split_string` block
 
@@ -82,3 +103,8 @@ git clone https://github.com/artob/flows.rs.git
 [![Share on Hacker News](https://img.shields.io/badge/share%20on-hn-orange?logo=ycombinator)](https://news.ycombinator.com/submitlink?u=https://github.com/artob/flows.rs&t=Flows.rs)
 [![Share on Facebook](https://img.shields.io/badge/share%20on-fb-1976D2?logo=facebook)](https://www.facebook.com/sharer/sharer.php?u=https://github.com/artob/flows.rs)
 [![Share on LinkedIn](https://img.shields.io/badge/share%20on-linkedin-3949AB?logo=linkedin)](https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/artob/flows.rs)
+
+[Async-Flow]: https://crates.io/crates/async-flow
+[Tokio]: https://tokio.rs
+[flow-based programming]: https://jpaulm.github.io/fbp/
+[naming conventions]: https://rust-lang.github.io/api-guidelines/naming.html
