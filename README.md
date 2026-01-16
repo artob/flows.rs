@@ -19,7 +19,7 @@ standard dataflow blocks for common use cases.
 [[Installation](#%EF%B8%8F-installation)] |
 [[Examples](#-examples)] |
 [[Reference](#-reference)] |
-[[Development](#-development)]
+[[Development](#%E2%80%8D-development)]
 
 ## ✨ Features
 
@@ -104,7 +104,7 @@ git clone https://github.com/artob/flows.rs.git
 [![Share on Facebook](https://img.shields.io/badge/share%20on-fb-1976D2?logo=facebook)](https://www.facebook.com/sharer/sharer.php?u=https://github.com/artob/flows.rs)
 [![Share on LinkedIn](https://img.shields.io/badge/share%20on-linkedin-3949AB?logo=linkedin)](https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/artob/flows.rs)
 
-[Async-Flow]: https://crates.io/crates/async-flow
+[Async-Flow]: https://github.com/artob/async-flow
 [Tokio]: https://tokio.rs
 [flow-based programming]: https://jpaulm.github.io/fbp/
 [naming conventions]: https://rust-lang.github.io/api-guidelines/naming.html

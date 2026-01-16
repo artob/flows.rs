@@ -20,4 +20,5 @@ keywords:
   - flow
   - dataflow
   - rust
+  - async
 license: Unlicense

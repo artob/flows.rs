@@ -21,14 +21,14 @@ version = "0.0.1"
 authors = ["Arto Bendiken"]
 edition = "2024"
 #rust-version = "1.85"
-description = "Building blocks for flow-based programming (FBP) in Rust."
+description = "Building blocks for flow-based programming (FBP)."
 #documentation = "https://docs.rs/flows"
 readme = true
 homepage = "https://flows.rs"
 repository = "https://github.com/artob/flows.rs"
 license = "Unlicense"
-keywords = ["fbp", "flow", "dataflow"]
-categories = []
+keywords = ["fbp", "flow", "dataflow", "async"]
+categories = ["asynchronous", "concurrency", "network-programming", "no-std"]
 publish = true
 
 [workspace.dependencies]
@@ -47,7 +47,7 @@ async-flow = { version = "0", default-features = false, features = ["tokio"] }
 tokio = { version = "1.49", default-features = false, features = ["macros", "rt", "sync"] }
 
 [patch.crates-io]
-async-flow = { git = "https://github.com/dryrust/async-flow.git" }
+async-flow = { git = "https://github.com/artob/async-flow.git" }
 flows = { path = "lib/flows" }
 flows-audio = { path = "lib/flows-audio" }
 flows-derive = { path = "lib/flows-derive" }
