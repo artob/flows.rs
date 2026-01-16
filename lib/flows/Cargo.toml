@@ -18,13 +18,53 @@ publish.workspace = true
 
 [features]
 default = ["all", "std"]
-all = []
-std = ["async-flow/std"]
+all = [
+    "audio",
+    "derive",
+    "hash",
+    "image",
+    "io",
+    "json",
+    "math",
+    "rand",
+    "text",
+]
+std = [
+    "async-flow/std",
+    "flows-audio?/std",
+    "flows-derive?/std",
+    "flows-hash?/std",
+    "flows-image?/std",
+    "flows-io?/std",
+    "flows-json?/std",
+    "flows-math?/std",
+    "flows-rand?/std",
+    "flows-text?/std",
+]
 unstable = []
+
+# Features:
+audio = ["dep:flows-audio"]
+derive = ["dep:flows-derive"]
+hash = ["dep:flows-hash"]
+image = ["dep:flows-image"]
+io = ["dep:flows-io"]
+json = ["dep:flows-json"]
+math = ["dep:flows-math"]
+rand = ["dep:flows-rand"]
+text = ["dep:flows-text"]
+
+# Integrations:
+serde = []
 
 [dependencies]
 async-flow.workspace = true
-
-[target.'cfg(not(target_family = "wasm"))'.dependencies]
-
-[target.'cfg(target_family = "wasm")'.dependencies]
+flows-audio = { workspace = true, features = ["all"], optional = true }
+flows-derive = { workspace = true, features = ["all"], optional = true }
+flows-hash = { workspace = true, features = ["all"], optional = true }
+flows-image = { workspace = true, features = ["all"], optional = true }
+flows-io = { workspace = true, features = ["all"], optional = true }
+flows-json = { workspace = true, features = ["all"], optional = true }
+flows-math = { workspace = true, features = ["all"], optional = true }
+flows-rand = { workspace = true, features = ["all"], optional = true }
+flows-text = { workspace = true, features = ["all"], optional = true }

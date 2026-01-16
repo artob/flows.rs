@@ -32,16 +32,16 @@ categories = []
 publish = true
 
 [workspace.dependencies]
-flows = "0.0.1"
-flows-audio = "0.0.1"
-flows-derive = "0.0.1"
-flows-hash = "0.0.1"
-flows-image = "0.0.1"
-flows-io = "0.0.1"
-flows-json = "0.0.1"
-flows-math = "0.0.1"
-flows-rand = "0.0.1"
-flows-text = "0.0.1"
+flows = { version = "0.0.1", default-features = false }
+flows-audio = { version = "0.0.1", default-features = false }
+flows-derive = { version = "0.0.1", default-features = false }
+flows-hash = { version = "0.0.1", default-features = false }
+flows-image = { version = "0.0.1", default-features = false }
+flows-io = { version = "0.0.1", default-features = false }
+flows-json = { version = "0.0.1", default-features = false }
+flows-math = { version = "0.0.1", default-features = false }
+flows-rand = { version = "0.0.1", default-features = false }
+flows-text = { version = "0.0.1", default-features = false }
 
 async-flow = { version = "0", default-features = false, features = ["tokio"] }
 tokio = { version = "1.49", default-features = false, features = ["macros", "rt", "sync"] }

@@ -45,6 +45,15 @@ name = "flows"
 version = "0.0.1"
 dependencies = [
  "async-flow",
+ "flows-audio",
+ "flows-derive",
+ "flows-hash",
+ "flows-image",
+ "flows-io",
+ "flows-json",
+ "flows-math",
+ "flows-rand",
+ "flows-text",
 ]
 
 [[package]]
