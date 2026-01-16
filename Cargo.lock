@@ -54,6 +54,7 @@ dependencies = [
  "flows-math",
  "flows-rand",
  "flows-text",
+ "tokio",
 ]
 
 [[package]]

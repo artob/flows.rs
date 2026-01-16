@@ -29,6 +29,42 @@ cargo add flows
 use flows::*;
 ```
 
+### Implementing blocks
+
+#### Implementing a `split_string` block
+
+```rust
+use flows::{Inputs, Outputs, Result};
+
+/// A block that splits input strings based on a delimiter.
+async fn split_string(delim: &str, mut ins: Inputs<String>, outs: Outputs<String>) -> Result {
+    while let Some(input) = ins.recv().await? {
+        for output in input.split(delim) {
+            outs.send(output.into()).await?;
+        }
+    }
+    Ok(())
+}
+```
+
+#### Implementing an `add_ints` block
+
+```rust
+use flows::{Inputs, Outputs, Result};
+
+/// A block that outputs the sums of input numbers.
+async fn add_ints(mut lhs: Inputs<i64>, mut rhs: Inputs<i64>, sums: Outputs<i64>) -> Result {
+    loop {
+        let (a, b) = tokio::try_join!(lhs.recv(), rhs.recv())?;
+        match (a, b) {
+            (Some(a), Some(b)) => sums.send(a + b).await?,
+            _ => break,
+        }
+    }
+    Ok(())
+}
+```
+
 ## 📚 Reference
 
 [docs.rs/flows](https://docs.rs/flows)

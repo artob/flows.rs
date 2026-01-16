@@ -68,3 +68,6 @@ flows-json = { workspace = true, features = ["all"], optional = true }
 flows-math = { workspace = true, features = ["all"], optional = true }
 flows-rand = { workspace = true, features = ["all"], optional = true }
 flows-text = { workspace = true, features = ["all"], optional = true }
+
+[dev-dependencies]
+tokio.workspace = true

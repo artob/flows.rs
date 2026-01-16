@@ -9,6 +9,9 @@ extern crate alloc;
 #[cfg(feature = "std")]
 extern crate std;
 
+pub use async_flow::io::*;
+pub use async_flow::tokio::*;
+
 #[cfg(feature = "audio")]
 pub use flows_audio as audio;
 
@@ -35,3 +38,7 @@ pub use flows_rand as rand;
 
 #[cfg(feature = "text")]
 pub use flows_text as text;
+
+#[doc = include_str!("../../../README.md")]
+#[cfg(doctest)]
+pub struct ReadmeDoctests;
