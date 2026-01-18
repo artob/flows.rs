@@ -31,12 +31,11 @@ mod tests {
     use super::*;
     use alloc::vec;
     use arrow_array::{Float32Array, Int32Array};
+    use async_flow::bounded;
     use std::sync::Arc;
 
     #[tokio::test]
     async fn test_count_rows() {
-        use async_flow::bounded;
-
         let col_1 = Arc::new(Int32Array::from_iter([1, 2, 3])) as _;
         let col_2 = Arc::new(Float32Array::from_iter([1., 6.3, 4.])) as _;
         let batch = RecordBatch::try_from_iter(vec![("col_1", col_1), ("col_2", col_2)]).unwrap();
@@ -53,8 +52,11 @@ mod tests {
 
         let _ = tokio::join!(counter);
 
-        assert_eq!(counts_rx.recv().await.unwrap(), Some(3));
-        assert_eq!(counts_rx.recv().await.unwrap(), Some(3));
+        let counts = counts_rx.recv_all().await.unwrap();
+        assert_eq!(counts.len(), 2);
+        for count in counts {
+            assert_eq!(count, 3);
+        }
 
         assert_eq!(total_rx.recv().await.unwrap(), Some(6));
     }

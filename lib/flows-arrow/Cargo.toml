@@ -32,4 +32,5 @@ tokio.workspace = true
 [target.'cfg(target_family = "wasm")'.dependencies]
 
 [dev-dependencies]
+arrow-schema = { version = "57.2", default-features = false }
 tokio.workspace = true

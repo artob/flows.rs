@@ -11,3 +11,6 @@ extern crate std;
 
 mod count_rows;
 pub use count_rows::*;
+
+mod project_columns;
+pub use project_columns::*;
