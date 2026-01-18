@@ -14,3 +14,6 @@ pub use count_rows::*;
 
 mod project_columns;
 pub use project_columns::*;
+
+mod slice_rows;
+pub use slice_rows::*;

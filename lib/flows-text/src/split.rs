@@ -21,27 +21,30 @@ pub async fn split_string(
 #[cfg(test)]
 mod tests {
     use super::*;
+    use alloc::boxed::Box;
+    use async_flow::Channel;
+    use core::error::Error;
 
     #[tokio::test]
-    async fn test_split_string() {
-        use async_flow::bounded;
+    async fn test_split_string() -> Result<(), Box<dyn Error>> {
+        let mut in_ = Channel::bounded(1);
+        let mut out = Channel::bounded(10);
 
-        let (mut in_tx, in_rx) = bounded(1);
-        let (out_tx, mut out_rx) = bounded(10);
-
-        let splitter = tokio::spawn(split_string(",", in_rx, out_tx));
+        let splitter = tokio::spawn(split_string(",", in_.rx, out.tx));
 
         for input in ["hello,world", "foo,bar,baz", "qux"] {
-            in_tx.send(input.into()).await.unwrap();
+            in_.tx.send(input.into()).await.unwrap();
         }
-        in_tx.close();
+        in_.tx.close();
 
         let _ = tokio::join!(splitter);
 
-        let outputs = out_rx.recv_all().await.unwrap();
+        let outputs = out.rx.recv_all().await.unwrap();
         assert_eq!(
             outputs,
             alloc::vec!["hello", "world", "foo", "bar", "baz", "qux"]
         );
+
+        Ok(())
     }
 }

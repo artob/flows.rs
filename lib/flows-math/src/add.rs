@@ -22,29 +22,32 @@ where
 #[cfg(test)]
 mod tests {
     use super::*;
+    use alloc::boxed::Box;
+    use async_flow::Channel;
+    use core::error::Error;
 
     #[tokio::test]
-    async fn test_add() {
-        use async_flow::bounded;
+    async fn test_add() -> Result<(), Box<dyn Error>> {
+        let mut lhs = Channel::bounded(1);
+        let mut rhs = Channel::bounded(1);
+        let mut sums = Channel::bounded(10);
 
-        let (mut lhs_tx, lhs_rx) = bounded(1);
-        let (mut rhs_tx, rhs_rx) = bounded(1);
-        let (sums_tx, mut sums_rx) = bounded(10);
+        let adder = tokio::spawn(add::<isize>(lhs.rx, rhs.rx, sums.tx));
 
-        let adder = tokio::spawn(add::<isize>(lhs_rx, rhs_rx, sums_tx));
+        lhs.tx.send(1).await.unwrap();
+        lhs.tx.close();
 
-        lhs_tx.send(1).await.unwrap();
-        lhs_tx.close();
-
-        rhs_tx.send(2).await.unwrap();
-        rhs_tx.close();
+        rhs.tx.send(2).await.unwrap();
+        rhs.tx.close();
 
         let _ = tokio::join!(adder);
 
-        let sum = sums_rx.recv().await.unwrap();
+        let sum = sums.rx.recv().await.unwrap();
         assert_eq!(sum, Some(3));
 
-        let sum = sums_rx.recv().await.unwrap();
+        let sum = sums.rx.recv().await.unwrap();
         assert_eq!(sum, None);
+
+        Ok(())
     }
 }

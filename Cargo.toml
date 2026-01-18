@@ -45,11 +45,12 @@ flows-math = { version = "0.0.2", default-features = false }
 flows-rand = { version = "0.0.2", default-features = false }
 flows-text = { version = "0.0.2", default-features = false }
 
-async-flow = { version = "0.0.4", default-features = false, features = ["tokio"] }
+async-flow = { version = "0.0.5", default-features = false, features = ["tokio"] }
 tokio = { version = "1.49", default-features = false, features = ["macros", "rt", "sync"] }
 
 [patch.crates-io]
 #async-flow = { git = "https://github.com/artob/async-flow.git" }
+#async-flow = { path = "lib/async-flow" }
 flows = { path = "lib/flows" }
 flows-arrow = { path = "lib/flows-arrow" }
 flows-audio = { path = "lib/flows-audio" }

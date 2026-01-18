@@ -1,13 +1,13 @@
 // This is free and unencumbered software released into the public domain.
 
 use arrow_array::RecordBatch;
-use async_flow::{Inputs, Outputs, Result};
+use async_flow::{Inputs, Output, Outputs, Result};
 
 /// A block that outputs row counts of input record batches.
 pub async fn count_rows(
     mut batches: Inputs<RecordBatch>,
     counts: Outputs<usize>,
-    total: Outputs<usize>,
+    total: Output<usize>,
 ) -> Result {
     let mut total_rows = 0;
 
@@ -31,7 +31,7 @@ mod tests {
     use super::*;
     use alloc::{boxed::Box, vec};
     use arrow_array::record_batch;
-    use async_flow::bounded;
+    use async_flow::Channel;
     use core::error::Error;
 
     #[tokio::test]
@@ -42,25 +42,25 @@ mod tests {
             ("c", Utf8, ["alpha", "beta", "gamma"])
         )?;
 
-        let (mut batches_tx, batches_rx) = bounded(10);
-        let (counts_tx, mut counts_rx) = bounded(10);
-        let (total_tx, mut total_rx) = bounded(10);
+        let mut batches = Channel::bounded(10);
+        let mut counts = Channel::bounded(10);
+        let mut total = Channel::oneshot();
 
-        let counter = tokio::spawn(count_rows(batches_rx, counts_tx, total_tx));
+        let counter = tokio::spawn(count_rows(batches.rx, counts.tx, total.tx));
 
-        batches_tx.send(batch.clone()).await?;
-        batches_tx.send(batch.clone()).await?;
-        batches_tx.close();
+        batches.tx.send(batch.clone()).await?;
+        batches.tx.send(batch.clone()).await?;
+        batches.tx.close();
 
         let _ = tokio::join!(counter);
 
-        let counts = counts_rx.recv_all().await?;
+        let counts = counts.rx.recv_all().await?;
         assert_eq!(counts.len(), 2);
         for count in counts {
             assert_eq!(count, 3);
         }
 
-        assert_eq!(total_rx.recv().await?, Some(6));
+        assert_eq!(total.rx.recv().await?, Some(6));
 
         Ok(())
     }

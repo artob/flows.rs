@@ -25,7 +25,7 @@ mod tests {
     use super::*;
     use alloc::{boxed::Box, vec};
     use arrow_array::record_batch;
-    use async_flow::bounded;
+    use async_flow::Channel;
     use core::error::Error;
 
     #[tokio::test]
@@ -38,18 +38,18 @@ mod tests {
         assert_eq!(input.num_columns(), 3);
         assert_eq!(input.num_rows(), 3);
 
-        let (mut inputs_tx, inputs_rx) = bounded(10);
-        let (outputs_tx, mut outputs_rx) = bounded(10);
+        let mut inputs = Channel::bounded(10);
+        let mut outputs = Channel::bounded(10);
 
-        let projecter = tokio::spawn(project_columns(&[1], inputs_rx, outputs_tx));
+        let projecter = tokio::spawn(project_columns(&[1], inputs.rx, outputs.tx));
 
-        inputs_tx.send(input.clone()).await?;
-        inputs_tx.send(input.clone()).await?;
-        inputs_tx.close();
+        inputs.tx.send(input.clone()).await?;
+        inputs.tx.send(input.clone()).await?;
+        inputs.tx.close();
 
         let _ = tokio::join!(projecter);
 
-        let outputs = outputs_rx.recv_all().await?;
+        let outputs = outputs.rx.recv_all().await?;
         assert_eq!(outputs.len(), 2);
         for output in outputs {
             assert_eq!(output.num_columns(), 1);
