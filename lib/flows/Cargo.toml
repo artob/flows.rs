@@ -19,6 +19,7 @@ publish.workspace = true
 [features]
 default = ["all", "std"]
 all = [
+    "arrow",
     "audio",
     "derive",
     "hash",
@@ -31,6 +32,7 @@ all = [
 ]
 std = [
     "async-flow/std",
+    "flows-arrow?/std",
     "flows-audio?/std",
     "flows-derive?/std",
     "flows-hash?/std",
@@ -43,7 +45,8 @@ std = [
 ]
 unstable = []
 
-# Features:
+# Crates:
+arrow = ["dep:flows-arrow"]
 audio = ["dep:flows-audio"]
 derive = ["dep:flows-derive"]
 hash = ["dep:flows-hash"]
@@ -59,6 +62,7 @@ serde = []
 
 [dependencies]
 async-flow.workspace = true
+flows-arrow = { workspace = true, features = ["all"], optional = true }
 flows-audio = { workspace = true, features = ["all"], optional = true }
 flows-derive = { workspace = true, features = ["all"], optional = true }
 flows-hash = { workspace = true, features = ["all"], optional = true }

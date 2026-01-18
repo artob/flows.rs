@@ -4,6 +4,7 @@
 members = ["lib/*"]
 default-members = [
     "lib/flows",
+    "lib/flows-arrow",
     "lib/flows-audio",
     "lib/flows-derive",
     "lib/flows-hash",
@@ -33,6 +34,7 @@ publish = true
 
 [workspace.dependencies]
 flows = { version = "0.0.2", default-features = false }
+flows-arrow = { version = "0.0.2", default-features = false }
 flows-audio = { version = "0.0.2", default-features = false }
 flows-derive = { version = "0.0.2", default-features = false }
 flows-hash = { version = "0.0.2", default-features = false }
@@ -43,12 +45,13 @@ flows-math = { version = "0.0.2", default-features = false }
 flows-rand = { version = "0.0.2", default-features = false }
 flows-text = { version = "0.0.2", default-features = false }
 
-async-flow = { version = "0.0.1", default-features = false, features = ["tokio"] }
+async-flow = { version = "0.0.4", default-features = false, features = ["tokio"] }
 tokio = { version = "1.49", default-features = false, features = ["macros", "rt", "sync"] }
 
 [patch.crates-io]
 #async-flow = { git = "https://github.com/artob/async-flow.git" }
 flows = { path = "lib/flows" }
+flows-arrow = { path = "lib/flows-arrow" }
 flows-audio = { path = "lib/flows-audio" }
 flows-derive = { path = "lib/flows-derive" }
 flows-hash = { path = "lib/flows-hash" }

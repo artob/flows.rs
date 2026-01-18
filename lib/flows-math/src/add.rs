@@ -25,7 +25,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_add() {
-        use async_flow::{Port, bounded};
+        use async_flow::bounded;
 
         let (mut lhs_tx, lhs_rx) = bounded(1);
         let (mut rhs_tx, rhs_rx) = bounded(1);

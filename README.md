@@ -14,12 +14,16 @@ standard dataflow blocks for common use cases.
 > [!TIP]
 > 🚧 _We are building in public. This is presently under heavy construction._
 
+<sub>
+
 [[Features](#-features)] |
 [[Prerequisites](#%EF%B8%8F-prerequisites)] |
 [[Installation](#%EF%B8%8F-installation)] |
 [[Examples](#-examples)] |
 [[Reference](#-reference)] |
 [[Development](#%E2%80%8D-development)]
+
+</sub>
 
 ## ✨ Features
 
@@ -28,7 +32,7 @@ standard dataflow blocks for common use cases.
 - Built on the primitives provided by the [Async-Flow] project.
 - Supports opting out of any feature using comprehensive feature flags.
 - Adheres to the Rust API Guidelines in its [naming conventions].
-- No licensing headaches: 100% free and unencumbered public domain software.
+- Cuts red tape: 100% free and unencumbered public domain software.
 
 ## 🛠️ Prerequisites
 

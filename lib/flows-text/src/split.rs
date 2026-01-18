@@ -24,7 +24,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_split_string() {
-        use async_flow::{Port, bounded};
+        use async_flow::bounded;
 
         let (mut in_tx, in_rx) = bounded(1);
         let (out_tx, mut out_rx) = bounded(10);
