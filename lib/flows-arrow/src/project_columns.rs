@@ -23,18 +23,18 @@ pub async fn project_columns(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use alloc::vec;
+    use alloc::{boxed::Box, vec};
     use arrow_array::record_batch;
     use async_flow::bounded;
+    use core::error::Error;
 
     #[tokio::test]
-    async fn test_project_columns() {
+    async fn test_project_columns() -> Result<(), Box<dyn Error>> {
         let input = record_batch!(
             ("a", Int32, [1, 2, 3]),
             ("b", Float64, [Some(4.0), None, Some(5.0)]),
             ("c", Utf8, ["alpha", "beta", "gamma"])
-        )
-        .unwrap();
+        )?;
         assert_eq!(input.num_columns(), 3);
         assert_eq!(input.num_rows(), 3);
 
@@ -43,15 +43,19 @@ mod tests {
 
         let projecter = tokio::spawn(project_columns(&[1], inputs_rx, outputs_tx));
 
-        inputs_tx.send(input.clone()).await.unwrap();
-        inputs_tx.send(input.clone()).await.unwrap();
+        inputs_tx.send(input.clone()).await?;
+        inputs_tx.send(input.clone()).await?;
         inputs_tx.close();
 
         let _ = tokio::join!(projecter);
 
-        for output in outputs_rx.recv_all().await.unwrap() {
+        let outputs = outputs_rx.recv_all().await?;
+        assert_eq!(outputs.len(), 2);
+        for output in outputs {
             assert_eq!(output.num_columns(), 1);
             assert_eq!(output.num_rows(), 3);
         }
+
+        Ok(())
     }
 }

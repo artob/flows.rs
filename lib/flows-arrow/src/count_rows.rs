@@ -29,16 +29,18 @@ pub async fn count_rows(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use alloc::vec;
-    use arrow_array::{Float32Array, Int32Array};
+    use alloc::{boxed::Box, vec};
+    use arrow_array::record_batch;
     use async_flow::bounded;
-    use std::sync::Arc;
+    use core::error::Error;
 
     #[tokio::test]
-    async fn test_count_rows() {
-        let col_1 = Arc::new(Int32Array::from_iter([1, 2, 3])) as _;
-        let col_2 = Arc::new(Float32Array::from_iter([1., 6.3, 4.])) as _;
-        let batch = RecordBatch::try_from_iter(vec![("col_1", col_1), ("col_2", col_2)]).unwrap();
+    async fn test_count_rows() -> Result<(), Box<dyn Error>> {
+        let batch = record_batch!(
+            ("a", Int32, [1, 2, 3]),
+            ("b", Float64, [Some(4.0), None, Some(5.0)]),
+            ("c", Utf8, ["alpha", "beta", "gamma"])
+        )?;
 
         let (mut batches_tx, batches_rx) = bounded(10);
         let (counts_tx, mut counts_rx) = bounded(10);
@@ -46,18 +48,20 @@ mod tests {
 
         let counter = tokio::spawn(count_rows(batches_rx, counts_tx, total_tx));
 
-        batches_tx.send(batch.clone()).await.unwrap();
-        batches_tx.send(batch.clone()).await.unwrap();
+        batches_tx.send(batch.clone()).await?;
+        batches_tx.send(batch.clone()).await?;
         batches_tx.close();
 
         let _ = tokio::join!(counter);
 
-        let counts = counts_rx.recv_all().await.unwrap();
+        let counts = counts_rx.recv_all().await?;
         assert_eq!(counts.len(), 2);
         for count in counts {
             assert_eq!(count, 3);
         }
 
-        assert_eq!(total_rx.recv().await.unwrap(), Some(6));
+        assert_eq!(total_rx.recv().await?, Some(6));
+
+        Ok(())
     }
 }
