@@ -24,6 +24,7 @@ unstable = []
 
 [dependencies]
 arrow-array = { version = "57.2", default-features = false }
+arrow-select = { version = "57.2", default-features = false }
 async-flow.workspace = true
 tokio.workspace = true
 

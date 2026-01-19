@@ -17,6 +17,7 @@ pub async fn project_columns(
             outputs.send(output).await?;
         }
     }
+
     Ok(())
 }
 
@@ -30,6 +31,10 @@ mod tests {
 
     #[tokio::test]
     async fn test_project_columns() -> Result<(), Box<dyn Error>> {
+        let mut inputs = Channel::bounded(10);
+        let mut outputs = Channel::bounded(10);
+        let projecter = tokio::spawn(project_columns(&[1], inputs.rx, outputs.tx));
+
         let input = record_batch!(
             ("a", Int32, [1, 2, 3]),
             ("b", Float64, [Some(4.0), None, Some(5.0)]),
@@ -37,12 +42,6 @@ mod tests {
         )?;
         assert_eq!(input.num_columns(), 3);
         assert_eq!(input.num_rows(), 3);
-
-        let mut inputs = Channel::bounded(10);
-        let mut outputs = Channel::bounded(10);
-
-        let projecter = tokio::spawn(project_columns(&[1], inputs.rx, outputs.tx));
-
         inputs.tx.send(input.clone()).await?;
         inputs.tx.send(input.clone()).await?;
         inputs.tx.close();

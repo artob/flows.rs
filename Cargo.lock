@@ -75,6 +75,20 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6bb63203e8e0e54b288d0d8043ca8fa1013820822a27692ef1b78a977d879f2c"
 
 [[package]]
+name = "arrow-select"
+version = "57.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c96d8a1c180b44ecf2e66c9a2f2bbcb8b1b6f14e165ce46ac8bde211a363411b"
+dependencies = [
+ "ahash",
+ "arrow-array",
+ "arrow-buffer",
+ "arrow-data",
+ "arrow-schema",
+ "num-traits",
+]
+
+[[package]]
 name = "async-flow"
 version = "0.0.5"
 dependencies = [
@@ -227,6 +241,7 @@ version = "0.0.2"
 dependencies = [
  "arrow-array",
  "arrow-schema",
+ "arrow-select",
  "async-flow 0.0.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "tokio",
 ]

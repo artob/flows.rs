@@ -36,18 +36,16 @@ mod tests {
 
     #[tokio::test]
     async fn test_count_rows() -> Result<(), Box<dyn Error>> {
+        let mut batches = Channel::bounded(10);
+        let mut counts = Channel::bounded(10);
+        let mut total = Channel::oneshot();
+        let counter = tokio::spawn(count_rows(batches.rx, counts.tx, total.tx));
+
         let batch = record_batch!(
             ("a", Int32, [1, 2, 3]),
             ("b", Float64, [Some(4.0), None, Some(5.0)]),
             ("c", Utf8, ["alpha", "beta", "gamma"])
         )?;
-
-        let mut batches = Channel::bounded(10);
-        let mut counts = Channel::bounded(10);
-        let mut total = Channel::oneshot();
-
-        let counter = tokio::spawn(count_rows(batches.rx, counts.tx, total.tx));
-
         batches.tx.send(batch.clone()).await?;
         batches.tx.send(batch.clone()).await?;
         batches.tx.close();

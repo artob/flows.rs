@@ -9,6 +9,9 @@ extern crate alloc;
 #[cfg(feature = "std")]
 extern crate std;
 
+mod concat_batches;
+pub use concat_batches::*;
+
 mod count_rows;
 pub use count_rows::*;
 
