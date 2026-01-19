@@ -12,6 +12,10 @@ pub async fn concat_batches(
     let mut batches: Vec<RecordBatch> = Vec::new();
 
     while let Some(batch) = inputs.recv().await? {
+        if batch.num_rows() == 0 && !batches.is_empty() {
+            // Skip empty batches after the first one
+            continue;
+        }
         batches.push(batch);
     }
 
