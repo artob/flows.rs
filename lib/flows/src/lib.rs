@@ -14,6 +14,9 @@ pub use async_flow::*;
 #[cfg(feature = "audio")]
 pub use flows_audio as audio;
 
+#[cfg(feature = "datafusion")]
+pub use flows_datafusion as datafusion;
+
 #[cfg(feature = "derive")]
 pub use flows_derive as derive;
 

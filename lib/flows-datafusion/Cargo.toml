@@ -23,6 +23,9 @@ std = ["async-flow/std"]
 unstable = []
 
 [dependencies]
+arrow-arith = { version = "57.2", default-features = false }
+arrow-array = { version = "57.2", default-features = false }
+arrow-schema = { version = "57.2", default-features = false }
 async-flow.workspace = true
 datafusion-common = { version = "52", default-features = false }
 flows-arrow.workspace = true
