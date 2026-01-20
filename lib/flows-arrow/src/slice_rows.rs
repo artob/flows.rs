@@ -1,7 +1,7 @@
 // This is free and unencumbered software released into the public domain.
 
 use arrow_array::RecordBatch;
-use async_flow::{Inputs, Outputs, Result};
+use async_flow::{Inputs, Outputs, Port, Result};
 
 /// A block that applies offsets/limits to batches of rows.
 #[allow(unused)]
@@ -78,7 +78,7 @@ mod tests {
     use super::*;
     use alloc::{boxed::Box, vec, vec::Vec};
     use arrow_array::record_batch;
-    use async_flow::Channel;
+    use async_flow::{Channel, InputPort};
     use core::error::Error;
 
     #[tokio::test]

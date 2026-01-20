@@ -22,7 +22,7 @@ pub async fn split_string(
 mod tests {
     use super::*;
     use alloc::boxed::Box;
-    use async_flow::Channel;
+    use async_flow::{Channel, InputPort};
     use core::error::Error;
 
     #[tokio::test]

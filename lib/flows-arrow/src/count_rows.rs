@@ -1,7 +1,7 @@
 // This is free and unencumbered software released into the public domain.
 
 use arrow_array::RecordBatch;
-use async_flow::{Inputs, Output, Outputs, Result};
+use async_flow::{Inputs, Output, Outputs, Port, Result};
 
 /// A block that outputs row counts of input record batches.
 pub async fn count_rows(
@@ -31,7 +31,7 @@ mod tests {
     use super::*;
     use alloc::{boxed::Box, vec};
     use arrow_array::record_batch;
-    use async_flow::Channel;
+    use async_flow::{Channel, InputPort};
     use core::error::Error;
 
     #[tokio::test]

@@ -2,7 +2,7 @@
 
 use alloc::vec::Vec;
 use arrow_array::RecordBatch;
-use async_flow::{Inputs, Output, Result};
+use async_flow::{Inputs, Output, Port, Result};
 
 /// A block that concatenates input batches into a single output batch.
 pub async fn concat_batches(
@@ -36,7 +36,7 @@ mod tests {
     use super::*;
     use alloc::{boxed::Box, vec};
     use arrow_array::record_batch;
-    use async_flow::Channel;
+    use async_flow::{Channel, InputPort};
     use core::error::Error;
 
     #[tokio::test]
