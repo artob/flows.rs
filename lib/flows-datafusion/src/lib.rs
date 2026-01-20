@@ -9,5 +9,11 @@ extern crate alloc;
 #[cfg(feature = "std")]
 extern crate std;
 
+mod max_column;
+pub use max_column::*;
+
+mod min_column;
+pub use min_column::*;
+
 mod sum_column;
 pub use sum_column::*;
