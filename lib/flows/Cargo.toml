@@ -21,6 +21,7 @@ default = ["all", "std"]
 all = [
     "arrow",
     "audio",
+    "datafusion",
     "derive",
     "hash",
     "image",
@@ -34,6 +35,7 @@ std = [
     "async-flow/std",
     "flows-arrow?/std",
     "flows-audio?/std",
+    "flows-datafusion?/std",
     "flows-derive?/std",
     "flows-hash?/std",
     "flows-image?/std",
@@ -48,6 +50,7 @@ unstable = []
 # Crates:
 arrow = ["dep:flows-arrow"]
 audio = ["dep:flows-audio"]
+datafusion = ["dep:flows-datafusion"]
 derive = ["dep:flows-derive"]
 hash = ["dep:flows-hash"]
 image = ["dep:flows-image"]
@@ -64,6 +67,7 @@ serde = []
 async-flow.workspace = true
 flows-arrow = { workspace = true, features = ["all"], optional = true }
 flows-audio = { workspace = true, features = ["all"], optional = true }
+flows-datafusion = { workspace = true, features = ["all"], optional = true }
 flows-derive = { workspace = true, features = ["all"], optional = true }
 flows-hash = { workspace = true, features = ["all"], optional = true }
 flows-image = { workspace = true, features = ["all"], optional = true }
