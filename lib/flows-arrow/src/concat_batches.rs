@@ -13,8 +13,7 @@ pub async fn concat_batches(
 
     while let Some(batch) = inputs.recv().await? {
         if batch.num_rows() == 0 && !batches.is_empty() {
-            // Skip empty batches after the first one
-            continue;
+            continue; // skip empty batches after the first one
         }
         batches.push(batch);
     }

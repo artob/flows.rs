@@ -494,6 +494,7 @@ dependencies = [
  "async-flow 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "flows-arrow",
  "flows-audio",
+ "flows-datafusion",
  "flows-derive",
  "flows-hash",
  "flows-image",
@@ -509,7 +510,6 @@ dependencies = [
 name = "flows-arrow"
 version = "0.0.2"
 dependencies = [
- "arrow-arith",
  "arrow-array",
  "arrow-schema",
  "arrow-select",
@@ -528,6 +528,9 @@ dependencies = [
 name = "flows-datafusion"
 version = "0.0.2"
 dependencies = [
+ "arrow-arith",
+ "arrow-array",
+ "arrow-schema",
  "async-flow 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "datafusion-common",
  "flows-arrow",

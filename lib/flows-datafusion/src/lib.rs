@@ -9,6 +9,11 @@ extern crate alloc;
 #[cfg(feature = "std")]
 extern crate std;
 
+pub use flows_arrow::*;
+
+mod avg_column;
+pub use avg_column::*;
+
 mod max_column;
 pub use max_column::*;
 

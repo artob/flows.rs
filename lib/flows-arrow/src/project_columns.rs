@@ -12,6 +12,10 @@ pub async fn project_columns(
     outputs: Outputs<RecordBatch>,
 ) -> Result {
     while let Some(input) = inputs.recv().await? {
+        if input.num_rows() == 0 {
+            continue; // skip empty batches
+        }
+
         let output = input.project(columns).unwrap();
         if !outputs.is_closed() {
             outputs.send(output).await?;

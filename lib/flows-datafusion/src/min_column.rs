@@ -1,4 +1,4 @@
-// // This is free and unencumbered software released into the public domain.
+// This is free and unencumbered software released into the public domain.
 
 use arrow_array::{ArrayRef, RecordBatch};
 use async_flow::{Inputs, Output, Port, Result};
@@ -17,10 +17,15 @@ pub async fn min_column(
     let mut result: ScalarValue = ScalarValue::Null;
 
     while let Some(input) = inputs.recv().await? {
+        if input.num_rows() == 0 {
+            continue; // skip empty batches
+        }
+
         let column_array = input.column(column);
         let Some(column_min) = min_array(column_array) else {
-            continue;
+            continue; // skip unsupported datatypes
         };
+
         if result.is_null() || column_min < result {
             result = column_min;
         }
@@ -66,13 +71,13 @@ mod tests {
     async fn test_min_column_i32() -> Result<(), Box<dyn Error>> {
         let mut in_ = Channel::bounded(10);
         let mut out = Channel::oneshot();
-        let summer = tokio::spawn(min_column(0, in_.rx, out.tx));
+        let minner = tokio::spawn(min_column(0, in_.rx, out.tx));
 
         in_.tx.send(sample_data()).await?;
         in_.tx.send(sample_data()).await?;
         in_.tx.close();
 
-        let _ = tokio::join!(summer);
+        let _ = tokio::join!(minner);
 
         let outputs = out.rx.recv_all().await?;
         assert_eq!(outputs.len(), 1);

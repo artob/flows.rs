@@ -14,6 +14,10 @@ pub async fn slice_rows(
     let mut total_rows = 0;
 
     while let Some(input) = inputs.recv().await? {
+        if input.num_rows() == 0 {
+            continue; // skip empty batches
+        }
+
         let batch_len = input.num_rows();
         total_rows += batch_len;
 
@@ -65,6 +69,7 @@ pub async fn slice_rows(
 
             (_, _) => unreachable!(),
         };
+
         if !outputs.is_closed() {
             outputs.send(output).await?;
         }
