@@ -3,16 +3,19 @@
 [![License](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](https://unlicense.org)
 [![Compatibility](https://img.shields.io/badge/rust-1.85%2B-blue)](https://blog.rust-lang.org/2025/02/20/Rust-1.85.0/)
 [![Package](https://img.shields.io/crates/v/flows)](https://crates.io/crates/flows)
-[![Documentation](https://docs.rs/flows/badge.svg)](https://docs.rs/flows)
+[![Documentation](https://img.shields.io/docsrs/flows?label=docs.rs)](https://docs.rs/flows)
+[![Featured](https://img.shields.io/badge/awesome-fbp-lightgrey)](https://github.com/artob/awesome-fbp)
 
 _"Τὰ πάντα ῥεῖ καὶ οὐδὲν μένει" — Heraclitus_
 
 **Building blocks for [flow-based programming] (FBP) in Rust.**
 This collection of crates implements a growing shrink-wrap inventory of
-standard dataflow blocks for common use cases.
+standard, reusable dataflow blocks for common use cases.
 
 > [!TIP]
 > 🚧 _We are building in public. This is presently under heavy construction._
+
+<br/>
 
 <sub>
 
@@ -93,6 +96,30 @@ async fn add_ints(mut lhs: Inputs<i64>, mut rhs: Inputs<i64>, sums: Outputs<i64>
 ## 📚 Reference
 
 [docs.rs/flows](https://docs.rs/flows)
+
+### Crates
+
+TBD
+
+### Integrations
+
+TBD
+
+### Glossary
+
+- **System**: A collection of blocks that are connected together.
+  Systems are the top-level entities in dataflow programs.
+
+- **Block**: An encapsulated system component that processes messages.
+  Blocks are the autonomous units of computation in a system.
+
+- **Port**: A named connection point on a block that sends or receives
+  messages. Ports are the only interfaces through which blocks communicate
+  with each other.
+
+- **Message**: A unit of data that flows between blocks in a system, from port
+  to port. Any Rust type that implements the `Send + Sync + 'static` traits can
+  be used as a message.
 
 ## 👨‍💻 Development
 
