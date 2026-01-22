@@ -260,12 +260,14 @@ dependencies = [
 
 [[package]]
 name = "async-flow"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "async-trait",
  "dogma",
  "flume",
  "replace_with",
+ "serde",
+ "serde_json",
  "thiserror",
  "tokio",
  "tokio-stream",
@@ -273,13 +275,15 @@ dependencies = [
 
 [[package]]
 name = "async-flow"
-version = "0.1.0"
+version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "528ed107040b18ba7cab336658ed2932480dc715583b25d807b64c8b2d074191"
+checksum = "fe3fdb74da1bbbd5e4723597ad6e0a7c20a2f2c0b57884aa13ab393b930ae054"
 dependencies = [
  "async-trait",
  "dogma",
  "replace_with",
+ "serde",
+ "serde_json",
  "thiserror",
  "tokio",
 ]
@@ -491,7 +495,7 @@ dependencies = [
 name = "flows"
 version = "0.0.2"
 dependencies = [
- "async-flow 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "flows-arrow",
  "flows-audio",
  "flows-datafusion",
@@ -513,7 +517,7 @@ dependencies = [
  "arrow-array",
  "arrow-schema",
  "arrow-select",
- "async-flow 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "tokio",
 ]
 
@@ -521,7 +525,7 @@ dependencies = [
 name = "flows-audio"
 version = "0.0.2"
 dependencies = [
- "async-flow 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -531,7 +535,7 @@ dependencies = [
  "arrow-arith",
  "arrow-array",
  "arrow-schema",
- "async-flow 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "datafusion-common",
  "flows-arrow",
  "tokio",
@@ -541,42 +545,43 @@ dependencies = [
 name = "flows-derive"
 version = "0.0.2"
 dependencies = [
- "async-flow 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "flows-hash"
 version = "0.0.2"
 dependencies = [
- "async-flow 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "flows-image"
 version = "0.0.2"
 dependencies = [
- "async-flow 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "flows-io"
 version = "0.0.2"
 dependencies = [
- "async-flow 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "flows-json"
 version = "0.0.2"
 dependencies = [
- "async-flow 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "serde_json",
 ]
 
 [[package]]
 name = "flows-math"
 version = "0.0.2"
 dependencies = [
- "async-flow 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "tokio",
 ]
 
@@ -584,14 +589,14 @@ dependencies = [
 name = "flows-rand"
 version = "0.0.2"
 dependencies = [
- "async-flow 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "flows-text"
 version = "0.0.2"
 dependencies = [
- "async-flow 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "tokio",
 ]
 

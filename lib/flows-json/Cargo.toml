@@ -19,11 +19,12 @@ publish.workspace = true
 [features]
 default = ["all", "std"]
 all = []
-std = ["async-flow/std"]
+std = ["async-flow/std", "serde_json/std"]
 unstable = []
 
 [dependencies]
-async-flow.workspace = true
+async-flow = { workspace = true, features = ["serde"] }
+serde_json = { version = "1", default-features = false, features = ["alloc"] }
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 
