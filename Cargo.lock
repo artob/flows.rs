@@ -261,21 +261,6 @@ dependencies = [
 [[package]]
 name = "async-flow"
 version = "0.1.1"
-dependencies = [
- "async-trait",
- "dogma",
- "flume",
- "replace_with",
- "serde",
- "serde_json",
- "thiserror",
- "tokio",
- "tokio-stream",
-]
-
-[[package]]
-name = "async-flow"
-version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fe3fdb74da1bbbd5e4723597ad6e0a7c20a2f2c0b57884aa13ab393b930ae054"
 dependencies = [
@@ -493,9 +478,9 @@ dependencies = [
 
 [[package]]
 name = "flows"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
- "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow",
  "flows-arrow",
  "flows-audio",
  "flows-datafusion",
@@ -512,30 +497,30 @@ dependencies = [
 
 [[package]]
 name = "flows-arrow"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
  "arrow-array",
  "arrow-schema",
  "arrow-select",
- "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow",
  "tokio",
 ]
 
 [[package]]
 name = "flows-audio"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
- "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow",
 ]
 
 [[package]]
 name = "flows-datafusion"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
  "arrow-arith",
  "arrow-array",
  "arrow-schema",
- "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow",
  "datafusion-common",
  "flows-arrow",
  "tokio",
@@ -543,72 +528,61 @@ dependencies = [
 
 [[package]]
 name = "flows-derive"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
- "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow",
 ]
 
 [[package]]
 name = "flows-hash"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
- "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow",
 ]
 
 [[package]]
 name = "flows-image"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
- "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow",
 ]
 
 [[package]]
 name = "flows-io"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
- "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow",
 ]
 
 [[package]]
 name = "flows-json"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
- "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow",
  "serde_json",
 ]
 
 [[package]]
 name = "flows-math"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
- "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow",
  "tokio",
 ]
 
 [[package]]
 name = "flows-rand"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
- "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow",
 ]
 
 [[package]]
 name = "flows-text"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
- "async-flow 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow",
  "tokio",
-]
-
-[[package]]
-name = "flume"
-version = "0.12.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5e139bc46ca777eb5efaf62df0ab8cc5fd400866427e56c68b22e414e53bd3be"
-dependencies = [
- "futures-core",
- "futures-sink",
- "spin",
 ]
 
 [[package]]
@@ -616,18 +590,6 @@ name = "foldhash"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "77ce24cb58228fbb8aa041425bb1050850ac19177686ea6e0f41a70416f56fdb"
-
-[[package]]
-name = "futures-core"
-version = "0.3.31"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "05f29059c0c2090612e8d742178b0580d2dc940c837851ad723096f87af6663e"
-
-[[package]]
-name = "futures-sink"
-version = "0.3.31"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e575fab7d1e0dcb8d0c7bcf9a63ee213816ab51902e6d244a95819acacf1d4f7"
 
 [[package]]
 name = "getrandom"
@@ -815,15 +777,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f9fbbcab51052fe104eb5e5d351cf728d30a5be1fe14d9be8a3b097481fb97de"
 
 [[package]]
-name = "lock_api"
-version = "0.4.14"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "224399e74b87b5f3557511d98dff8b14089b3dadafcab6bb93eab67d3aace965"
-dependencies = [
- "scopeguard",
-]
-
-[[package]]
 name = "log"
 version = "0.4.29"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -999,12 +952,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a50f4cf475b65d88e057964e0e9bb1f0aa9bbb2036dc65c64596b42932536984"
 
 [[package]]
-name = "scopeguard"
-version = "1.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49"
-
-[[package]]
 name = "semver"
 version = "1.0.27"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1072,15 +1019,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "56199f7ddabf13fe5074ce809e7d3f42b42ae711800501b5b16ea82ad029c39d"
 
 [[package]]
-name = "spin"
-version = "0.9.8"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6980e8d7511241f8acf4aebddbb1ff938df5eebe98691418c4468d0b72a96a67"
-dependencies = [
- "lock_api",
-]
-
-[[package]]
 name = "syn"
 version = "2.0.114"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1140,17 +1078,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn",
-]
-
-[[package]]
-name = "tokio-stream"
-version = "0.1.18"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "32da49809aab5c3bc678af03902d4ccddea2a87d028d86392a4b1560c6906c70"
-dependencies = [
- "futures-core",
- "pin-project-lite",
- "tokio",
 ]
 
 [[package]]
