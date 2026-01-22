@@ -1,0 +1,924 @@
+[
+  {
+    "package": {
+      "name": "flows",
+      "version": {
+        "workspace": true
+      },
+      "authors": {
+        "workspace": true
+      },
+      "edition": {
+        "workspace": true
+      },
+      "description": "Building blocks for flow-based programming (FBP).",
+      "readme": {
+        "workspace": true
+      },
+      "homepage": {
+        "workspace": true
+      },
+      "repository": {
+        "workspace": true
+      },
+      "license": {
+        "workspace": true
+      },
+      "keywords": {
+        "workspace": true
+      },
+      "categories": {
+        "workspace": true
+      },
+      "publish": {
+        "workspace": true
+      }
+    },
+    "features": {
+      "default": [
+        "all",
+        "std"
+      ],
+      "all": [
+        "arrow",
+        "audio",
+        "datafusion",
+        "derive",
+        "hash",
+        "image",
+        "io",
+        "json",
+        "math",
+        "rand",
+        "text"
+      ],
+      "std": [
+        "async-flow/std",
+        "flows-arrow?/std",
+        "flows-audio?/std",
+        "flows-datafusion?/std",
+        "flows-derive?/std",
+        "flows-hash?/std",
+        "flows-image?/std",
+        "flows-io?/std",
+        "flows-json?/std",
+        "flows-math?/std",
+        "flows-rand?/std",
+        "flows-text?/std"
+      ],
+      "unstable": [],
+      "arrow": [
+        "dep:flows-arrow"
+      ],
+      "audio": [
+        "dep:flows-audio"
+      ],
+      "datafusion": [
+        "dep:flows-datafusion"
+      ],
+      "derive": [
+        "dep:flows-derive"
+      ],
+      "hash": [
+        "dep:flows-hash"
+      ],
+      "image": [
+        "dep:flows-image"
+      ],
+      "io": [
+        "dep:flows-io"
+      ],
+      "json": [
+        "dep:flows-json"
+      ],
+      "math": [
+        "dep:flows-math"
+      ],
+      "rand": [
+        "dep:flows-rand"
+      ],
+      "text": [
+        "dep:flows-text"
+      ],
+      "serde": []
+    },
+    "dependencies": {
+      "async-flow": {
+        "workspace": true
+      },
+      "flows-arrow": {
+        "workspace": true,
+        "features": [
+          "all"
+        ],
+        "optional": true
+      },
+      "flows-audio": {
+        "workspace": true,
+        "features": [
+          "all"
+        ],
+        "optional": true
+      },
+      "flows-datafusion": {
+        "workspace": true,
+        "features": [
+          "all"
+        ],
+        "optional": true
+      },
+      "flows-derive": {
+        "workspace": true,
+        "features": [
+          "all"
+        ],
+        "optional": true
+      },
+      "flows-hash": {
+        "workspace": true,
+        "features": [
+          "all"
+        ],
+        "optional": true
+      },
+      "flows-image": {
+        "workspace": true,
+        "features": [
+          "all"
+        ],
+        "optional": true
+      },
+      "flows-io": {
+        "workspace": true,
+        "features": [
+          "all"
+        ],
+        "optional": true
+      },
+      "flows-json": {
+        "workspace": true,
+        "features": [
+          "all"
+        ],
+        "optional": true
+      },
+      "flows-math": {
+        "workspace": true,
+        "features": [
+          "all"
+        ],
+        "optional": true
+      },
+      "flows-rand": {
+        "workspace": true,
+        "features": [
+          "all"
+        ],
+        "optional": true
+      },
+      "flows-text": {
+        "workspace": true,
+        "features": [
+          "all"
+        ],
+        "optional": true
+      }
+    },
+    "dev-dependencies": {
+      "tokio": {
+        "workspace": true
+      }
+    }
+  },
+  {
+    "package": {
+      "name": "flows-arrow",
+      "version": {
+        "workspace": true
+      },
+      "authors": {
+        "workspace": true
+      },
+      "edition": {
+        "workspace": true
+      },
+      "description": "Building blocks for flow-based data processing with Apache Arrow.",
+      "readme": {
+        "workspace": true
+      },
+      "homepage": {
+        "workspace": true
+      },
+      "repository": {
+        "workspace": true
+      },
+      "license": {
+        "workspace": true
+      },
+      "keywords": {
+        "workspace": true
+      },
+      "categories": {
+        "workspace": true
+      },
+      "publish": {
+        "workspace": true
+      }
+    },
+    "features": {
+      "default": [
+        "all",
+        "std"
+      ],
+      "all": [],
+      "std": [
+        "async-flow/std"
+      ],
+      "unstable": []
+    },
+    "dependencies": {
+      "arrow-array": {
+        "version": "57.2",
+        "default-features": false
+      },
+      "arrow-select": {
+        "version": "57.2",
+        "default-features": false
+      },
+      "async-flow": {
+        "workspace": true
+      },
+      "tokio": {
+        "workspace": true
+      }
+    },
+    "target": {
+      "cfg(not(target_family = \"wasm\"))": {
+        "dependencies": {}
+      },
+      "cfg(target_family = \"wasm\")": {
+        "dependencies": {}
+      }
+    },
+    "dev-dependencies": {
+      "arrow-schema": {
+        "version": "57.2",
+        "default-features": false
+      },
+      "tokio": {
+        "workspace": true
+      }
+    }
+  },
+  {
+    "package": {
+      "name": "flows-audio",
+      "version": {
+        "workspace": true
+      },
+      "authors": {
+        "workspace": true
+      },
+      "edition": {
+        "workspace": true
+      },
+      "description": "Building blocks for flow-based audio processing.",
+      "readme": {
+        "workspace": true
+      },
+      "homepage": {
+        "workspace": true
+      },
+      "repository": {
+        "workspace": true
+      },
+      "license": {
+        "workspace": true
+      },
+      "keywords": {
+        "workspace": true
+      },
+      "categories": {
+        "workspace": true
+      },
+      "publish": {
+        "workspace": true
+      }
+    },
+    "features": {
+      "default": [
+        "all",
+        "std"
+      ],
+      "all": [],
+      "std": [
+        "async-flow/std"
+      ],
+      "unstable": []
+    },
+    "dependencies": {
+      "async-flow": {
+        "workspace": true
+      }
+    },
+    "target": {
+      "cfg(not(target_family = \"wasm\"))": {
+        "dependencies": {}
+      },
+      "cfg(target_family = \"wasm\")": {
+        "dependencies": {}
+      }
+    }
+  },
+  {
+    "package": {
+      "name": "flows-datafusion",
+      "version": {
+        "workspace": true
+      },
+      "authors": {
+        "workspace": true
+      },
+      "edition": {
+        "workspace": true
+      },
+      "description": "Building blocks for flow-based query processing with Apache DataFusion.",
+      "readme": {
+        "workspace": true
+      },
+      "homepage": {
+        "workspace": true
+      },
+      "repository": {
+        "workspace": true
+      },
+      "license": {
+        "workspace": true
+      },
+      "keywords": {
+        "workspace": true
+      },
+      "categories": {
+        "workspace": true
+      },
+      "publish": {
+        "workspace": true
+      }
+    },
+    "features": {
+      "default": [
+        "all",
+        "std"
+      ],
+      "all": [],
+      "std": [
+        "async-flow/std"
+      ],
+      "unstable": []
+    },
+    "dependencies": {
+      "arrow-arith": {
+        "version": "57.2",
+        "default-features": false
+      },
+      "arrow-array": {
+        "version": "57.2",
+        "default-features": false
+      },
+      "arrow-schema": {
+        "version": "57.2",
+        "default-features": false
+      },
+      "async-flow": {
+        "workspace": true
+      },
+      "datafusion-common": {
+        "version": "52",
+        "default-features": false
+      },
+      "flows-arrow": {
+        "workspace": true
+      },
+      "tokio": {
+        "workspace": true
+      }
+    },
+    "target": {
+      "cfg(not(target_family = \"wasm\"))": {
+        "dependencies": {}
+      },
+      "cfg(target_family = \"wasm\")": {
+        "dependencies": {}
+      }
+    },
+    "dev-dependencies": {
+      "tokio": {
+        "workspace": true
+      }
+    }
+  },
+  {
+    "package": {
+      "name": "flows-derive",
+      "version": {
+        "workspace": true
+      },
+      "authors": {
+        "workspace": true
+      },
+      "edition": {
+        "workspace": true
+      },
+      "description": "Macros for flow-based programming (FBP).",
+      "readme": {
+        "workspace": true
+      },
+      "homepage": {
+        "workspace": true
+      },
+      "repository": {
+        "workspace": true
+      },
+      "license": {
+        "workspace": true
+      },
+      "keywords": {
+        "workspace": true
+      },
+      "categories": {
+        "workspace": true
+      },
+      "publish": {
+        "workspace": true
+      }
+    },
+    "features": {
+      "default": [
+        "all",
+        "std"
+      ],
+      "all": [],
+      "std": [
+        "async-flow/std"
+      ],
+      "unstable": []
+    },
+    "dependencies": {
+      "async-flow": {
+        "workspace": true
+      }
+    },
+    "target": {
+      "cfg(not(target_family = \"wasm\"))": {
+        "dependencies": {}
+      },
+      "cfg(target_family = \"wasm\")": {
+        "dependencies": {}
+      }
+    }
+  },
+  {
+    "package": {
+      "name": "flows-hash",
+      "version": {
+        "workspace": true
+      },
+      "authors": {
+        "workspace": true
+      },
+      "edition": {
+        "workspace": true
+      },
+      "description": "Building blocks for flow-based cryptographic hashing.",
+      "readme": {
+        "workspace": true
+      },
+      "homepage": {
+        "workspace": true
+      },
+      "repository": {
+        "workspace": true
+      },
+      "license": {
+        "workspace": true
+      },
+      "keywords": {
+        "workspace": true
+      },
+      "categories": {
+        "workspace": true
+      },
+      "publish": {
+        "workspace": true
+      }
+    },
+    "features": {
+      "default": [
+        "all",
+        "std"
+      ],
+      "all": [],
+      "std": [
+        "async-flow/std"
+      ],
+      "unstable": []
+    },
+    "dependencies": {
+      "async-flow": {
+        "workspace": true
+      }
+    },
+    "target": {
+      "cfg(not(target_family = \"wasm\"))": {
+        "dependencies": {}
+      },
+      "cfg(target_family = \"wasm\")": {
+        "dependencies": {}
+      }
+    }
+  },
+  {
+    "package": {
+      "name": "flows-image",
+      "version": {
+        "workspace": true
+      },
+      "authors": {
+        "workspace": true
+      },
+      "edition": {
+        "workspace": true
+      },
+      "description": "Building blocks for flow-based image processing.",
+      "readme": {
+        "workspace": true
+      },
+      "homepage": {
+        "workspace": true
+      },
+      "repository": {
+        "workspace": true
+      },
+      "license": {
+        "workspace": true
+      },
+      "keywords": {
+        "workspace": true
+      },
+      "categories": {
+        "workspace": true
+      },
+      "publish": {
+        "workspace": true
+      }
+    },
+    "features": {
+      "default": [
+        "all",
+        "std"
+      ],
+      "all": [],
+      "std": [
+        "async-flow/std"
+      ],
+      "unstable": []
+    },
+    "dependencies": {
+      "async-flow": {
+        "workspace": true
+      }
+    },
+    "target": {
+      "cfg(not(target_family = \"wasm\"))": {
+        "dependencies": {}
+      },
+      "cfg(target_family = \"wasm\")": {
+        "dependencies": {}
+      }
+    }
+  },
+  {
+    "package": {
+      "name": "flows-io",
+      "version": {
+        "workspace": true
+      },
+      "authors": {
+        "workspace": true
+      },
+      "edition": {
+        "workspace": true
+      },
+      "description": "Building blocks for flow-based I/O readers & writers.",
+      "readme": {
+        "workspace": true
+      },
+      "homepage": {
+        "workspace": true
+      },
+      "repository": {
+        "workspace": true
+      },
+      "license": {
+        "workspace": true
+      },
+      "keywords": {
+        "workspace": true
+      },
+      "categories": {
+        "workspace": true
+      },
+      "publish": {
+        "workspace": true
+      }
+    },
+    "features": {
+      "default": [
+        "all",
+        "std"
+      ],
+      "all": [],
+      "std": [
+        "async-flow/std"
+      ],
+      "unstable": []
+    },
+    "dependencies": {
+      "async-flow": {
+        "workspace": true
+      }
+    },
+    "target": {
+      "cfg(not(target_family = \"wasm\"))": {
+        "dependencies": {}
+      },
+      "cfg(target_family = \"wasm\")": {
+        "dependencies": {}
+      }
+    }
+  },
+  {
+    "package": {
+      "name": "flows-json",
+      "version": {
+        "workspace": true
+      },
+      "authors": {
+        "workspace": true
+      },
+      "edition": {
+        "workspace": true
+      },
+      "description": "Building blocks for flow-based JSON encoding & decoding.",
+      "readme": {
+        "workspace": true
+      },
+      "homepage": {
+        "workspace": true
+      },
+      "repository": {
+        "workspace": true
+      },
+      "license": {
+        "workspace": true
+      },
+      "keywords": {
+        "workspace": true
+      },
+      "categories": {
+        "workspace": true
+      },
+      "publish": {
+        "workspace": true
+      }
+    },
+    "features": {
+      "default": [
+        "all",
+        "std"
+      ],
+      "all": [],
+      "std": [
+        "async-flow/std",
+        "serde_json/std"
+      ],
+      "unstable": []
+    },
+    "dependencies": {
+      "async-flow": {
+        "workspace": true,
+        "features": [
+          "serde"
+        ]
+      },
+      "serde_json": {
+        "version": "1",
+        "default-features": false,
+        "features": [
+          "alloc"
+        ]
+      }
+    },
+    "target": {
+      "cfg(not(target_family = \"wasm\"))": {
+        "dependencies": {}
+      },
+      "cfg(target_family = \"wasm\")": {
+        "dependencies": {}
+      }
+    }
+  },
+  {
+    "package": {
+      "name": "flows-math",
+      "version": {
+        "workspace": true
+      },
+      "authors": {
+        "workspace": true
+      },
+      "edition": {
+        "workspace": true
+      },
+      "description": "Building blocks for flow-based mathematical operations.",
+      "readme": {
+        "workspace": true
+      },
+      "homepage": {
+        "workspace": true
+      },
+      "repository": {
+        "workspace": true
+      },
+      "license": {
+        "workspace": true
+      },
+      "keywords": {
+        "workspace": true
+      },
+      "categories": {
+        "workspace": true
+      },
+      "publish": {
+        "workspace": true
+      }
+    },
+    "features": {
+      "default": [
+        "all",
+        "std"
+      ],
+      "all": [],
+      "std": [
+        "async-flow/std"
+      ],
+      "unstable": []
+    },
+    "dependencies": {
+      "async-flow": {
+        "workspace": true
+      },
+      "tokio": {
+        "workspace": true
+      }
+    },
+    "target": {
+      "cfg(not(target_family = \"wasm\"))": {
+        "dependencies": {}
+      },
+      "cfg(target_family = \"wasm\")": {
+        "dependencies": {}
+      }
+    },
+    "dev-dependencies": {
+      "tokio": {
+        "workspace": true
+      }
+    }
+  },
+  {
+    "package": {
+      "name": "flows-rand",
+      "version": {
+        "workspace": true
+      },
+      "authors": {
+        "workspace": true
+      },
+      "edition": {
+        "workspace": true
+      },
+      "description": "Building blocks for flow-based random number generation.",
+      "readme": {
+        "workspace": true
+      },
+      "homepage": {
+        "workspace": true
+      },
+      "repository": {
+        "workspace": true
+      },
+      "license": {
+        "workspace": true
+      },
+      "keywords": {
+        "workspace": true
+      },
+      "categories": {
+        "workspace": true
+      },
+      "publish": {
+        "workspace": true
+      }
+    },
+    "features": {
+      "default": [
+        "all",
+        "std"
+      ],
+      "all": [],
+      "std": [
+        "async-flow/std"
+      ],
+      "unstable": []
+    },
+    "dependencies": {
+      "async-flow": {
+        "workspace": true
+      }
+    },
+    "target": {
+      "cfg(not(target_family = \"wasm\"))": {
+        "dependencies": {}
+      },
+      "cfg(target_family = \"wasm\")": {
+        "dependencies": {}
+      }
+    }
+  },
+  {
+    "package": {
+      "name": "flows-text",
+      "version": {
+        "workspace": true
+      },
+      "authors": {
+        "workspace": true
+      },
+      "edition": {
+        "workspace": true
+      },
+      "description": "Building blocks for flow-based text processing.",
+      "readme": {
+        "workspace": true
+      },
+      "homepage": {
+        "workspace": true
+      },
+      "repository": {
+        "workspace": true
+      },
+      "license": {
+        "workspace": true
+      },
+      "keywords": {
+        "workspace": true
+      },
+      "categories": {
+        "workspace": true
+      },
+      "publish": {
+        "workspace": true
+      }
+    },
+    "features": {
+      "default": [
+        "all",
+        "std"
+      ],
+      "all": [],
+      "std": [
+        "async-flow/std"
+      ],
+      "unstable": []
+    },
+    "dependencies": {
+      "async-flow": {
+        "workspace": true
+      }
+    },
+    "target": {
+      "cfg(not(target_family = \"wasm\"))": {
+        "dependencies": {}
+      },
+      "cfg(target_family = \"wasm\")": {
+        "dependencies": {}
+      }
+    },
+    "dev-dependencies": {
+      "tokio": {
+        "workspace": true
+      }
+    }
+  }
+]

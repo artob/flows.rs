@@ -146,7 +146,6 @@ mod tests {
         offset: usize,
         limit: Option<usize>,
     ) -> Result<Vec<i32>, Box<dyn Error>> {
-        std::eprintln!("\n");
         let mut in_ = Channel::bounded(10);
         let mut out = Channel::bounded(10);
         let slicer = tokio::spawn(slice_rows(offset, limit, in_.rx, out.tx));

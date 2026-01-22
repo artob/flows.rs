@@ -32,7 +32,7 @@ standard, reusable dataflow blocks for common use cases.
 
 - Provides components for flow-based programming (FBP) based on [Tokio].
 - Supports dataflow systems by providing reusable components called blocks.
-- Built on the primitives provided by the [Async-Flow] project.
+- Built on the dataflow primitives provided by the [Async-Flow] project.
 - Supports opting out of any feature using comprehensive feature flags.
 - Adheres to the Rust API Guidelines in its [naming conventions].
 - Cuts red tape: 100% free and unencumbered public domain software.
@@ -97,9 +97,22 @@ async fn add_ints(mut lhs: Inputs<i64>, mut rhs: Inputs<i64>, sums: Outputs<i64>
 
 [docs.rs/flows](https://docs.rs/flows)
 
-### Crates
+### Packages
 
-TBD
+| Package | Summary | Crate | Documentation |
+| :------ | :------ | :---- | :------------ |
+| [flows](https://github.com/artob/flows.rs/tree/master/lib/flows) | Flow-based programming (FBP). | [![Package](https://img.shields.io/crates/v/flows)](https://crates.io/crates/flows) | [![Documentation](https://img.shields.io/docsrs/flows?label=docs.rs)](https://docs.rs/flows) |
+| [flows-arrow](https://github.com/artob/flows.rs/tree/master/lib/flows-arrow) | Flow-based data processing with Apache Arrow. | [![Package](https://img.shields.io/crates/v/flows-arrow)](https://crates.io/crates/flows-arrow) | [![Documentation](https://img.shields.io/docsrs/flows-arrow?label=docs.rs)](https://docs.rs/flows-arrow) |
+| [flows-audio](https://github.com/artob/flows.rs/tree/master/lib/flows-audio) | Flow-based audio processing. | [![Package](https://img.shields.io/crates/v/flows-audio)](https://crates.io/crates/flows-audio) | [![Documentation](https://img.shields.io/docsrs/flows-audio?label=docs.rs)](https://docs.rs/flows-audio) |
+| [flows-datafusion](https://github.com/artob/flows.rs/tree/master/lib/flows-datafusion) | Flow-based query processing with Apache DataFusion. | [![Package](https://img.shields.io/crates/v/flows-datafusion)](https://crates.io/crates/flows-datafusion) | [![Documentation](https://img.shields.io/docsrs/flows-datafusion?label=docs.rs)](https://docs.rs/flows-datafusion) |
+| [flows-derive](https://github.com/artob/flows.rs/tree/master/lib/flows-derive) | Macros for flow-based programming (FBP). | [![Package](https://img.shields.io/crates/v/flows-derive)](https://crates.io/crates/flows-derive) | [![Documentation](https://img.shields.io/docsrs/flows-derive?label=docs.rs)](https://docs.rs/flows-derive) |
+| [flows-hash](https://github.com/artob/flows.rs/tree/master/lib/flows-hash) | Flow-based cryptographic hashing. | [![Package](https://img.shields.io/crates/v/flows-hash)](https://crates.io/crates/flows-hash) | [![Documentation](https://img.shields.io/docsrs/flows-hash?label=docs.rs)](https://docs.rs/flows-hash) |
+| [flows-image](https://github.com/artob/flows.rs/tree/master/lib/flows-image) | Flow-based image processing. | [![Package](https://img.shields.io/crates/v/flows-image)](https://crates.io/crates/flows-image) | [![Documentation](https://img.shields.io/docsrs/flows-image?label=docs.rs)](https://docs.rs/flows-image) |
+| [flows-io](https://github.com/artob/flows.rs/tree/master/lib/flows-io) | Flow-based I/O readers & writers. | [![Package](https://img.shields.io/crates/v/flows-io)](https://crates.io/crates/flows-io) | [![Documentation](https://img.shields.io/docsrs/flows-io?label=docs.rs)](https://docs.rs/flows-io) |
+| [flows-json](https://github.com/artob/flows.rs/tree/master/lib/flows-json) | Flow-based JSON encoding & decoding. | [![Package](https://img.shields.io/crates/v/flows-json)](https://crates.io/crates/flows-json) | [![Documentation](https://img.shields.io/docsrs/flows-json?label=docs.rs)](https://docs.rs/flows-json) |
+| [flows-math](https://github.com/artob/flows.rs/tree/master/lib/flows-math) | Flow-based mathematical operations. | [![Package](https://img.shields.io/crates/v/flows-math)](https://crates.io/crates/flows-math) | [![Documentation](https://img.shields.io/docsrs/flows-math?label=docs.rs)](https://docs.rs/flows-math) |
+| [flows-rand](https://github.com/artob/flows.rs/tree/master/lib/flows-rand) | Flow-based random number generation. | [![Package](https://img.shields.io/crates/v/flows-rand)](https://crates.io/crates/flows-rand) | [![Documentation](https://img.shields.io/docsrs/flows-rand?label=docs.rs)](https://docs.rs/flows-rand) |
+| [flows-text](https://github.com/artob/flows.rs/tree/master/lib/flows-text) | Flow-based text processing. | [![Package](https://img.shields.io/crates/v/flows-text)](https://crates.io/crates/flows-text) | [![Documentation](https://img.shields.io/docsrs/flows-text?label=docs.rs)](https://docs.rs/flows-text) |
 
 ### Integrations
 
