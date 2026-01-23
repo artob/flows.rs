@@ -539,6 +539,66 @@
   },
   {
     "package": {
+      "name": "flows-http",
+      "version": {
+        "workspace": true
+      },
+      "authors": {
+        "workspace": true
+      },
+      "edition": {
+        "workspace": true
+      },
+      "description": "Building blocks for flow-based HTTP clients & servers.",
+      "readme": {
+        "workspace": true
+      },
+      "homepage": {
+        "workspace": true
+      },
+      "repository": {
+        "workspace": true
+      },
+      "license": {
+        "workspace": true
+      },
+      "keywords": {
+        "workspace": true
+      },
+      "categories": {
+        "workspace": true
+      },
+      "publish": {
+        "workspace": true
+      }
+    },
+    "features": {
+      "default": [
+        "all",
+        "std"
+      ],
+      "all": [],
+      "std": [
+        "async-flow/std"
+      ],
+      "unstable": []
+    },
+    "dependencies": {
+      "async-flow": {
+        "workspace": true
+      }
+    },
+    "target": {
+      "cfg(not(target_family = \"wasm\"))": {
+        "dependencies": {}
+      },
+      "cfg(target_family = \"wasm\")": {
+        "dependencies": {}
+      }
+    }
+  },
+  {
+    "package": {
       "name": "flows-image",
       "version": {
         "workspace": true

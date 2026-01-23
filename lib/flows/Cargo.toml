@@ -24,6 +24,7 @@ all = [
     "datafusion",
     "derive",
     "hash",
+    "http",
     "image",
     "io",
     "json",
@@ -38,6 +39,7 @@ std = [
     "flows-datafusion?/std",
     "flows-derive?/std",
     "flows-hash?/std",
+    "flows-http?/std",
     "flows-image?/std",
     "flows-io?/std",
     "flows-json?/std",
@@ -53,6 +55,7 @@ audio = ["dep:flows-audio"]
 datafusion = ["dep:flows-datafusion"]
 derive = ["dep:flows-derive"]
 hash = ["dep:flows-hash"]
+http = ["dep:flows-http"]
 image = ["dep:flows-image"]
 io = ["dep:flows-io"]
 json = ["dep:flows-json"]
@@ -70,6 +73,7 @@ flows-audio = { workspace = true, features = ["all"], optional = true }
 flows-datafusion = { workspace = true, features = ["all"], optional = true }
 flows-derive = { workspace = true, features = ["all"], optional = true }
 flows-hash = { workspace = true, features = ["all"], optional = true }
+flows-http = { workspace = true, features = ["all"], optional = true }
 flows-image = { workspace = true, features = ["all"], optional = true }
 flows-io = { workspace = true, features = ["all"], optional = true }
 flows-json = { workspace = true, features = ["all"], optional = true }

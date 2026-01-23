@@ -9,6 +9,7 @@ default-members = [
     "lib/flows-datafusion",
     "lib/flows-derive",
     "lib/flows-hash",
+    "lib/flows-http",
     "lib/flows-image",
     "lib/flows-io",
     "lib/flows-json",
@@ -40,6 +41,7 @@ flows-audio = { version = "0.0.3", default-features = false }
 flows-datafusion = { version = "0.0.3", default-features = false }
 flows-derive = { version = "0.0.3", default-features = false }
 flows-hash = { version = "0.0.3", default-features = false }
+flows-http = { version = "0.0.3", default-features = false }
 flows-image = { version = "0.0.3", default-features = false }
 flows-io = { version = "0.0.3", default-features = false }
 flows-json = { version = "0.0.3", default-features = false }
@@ -59,6 +61,7 @@ flows-audio = { path = "lib/flows-audio" }
 flows-datafusion = { path = "lib/flows-datafusion" }
 flows-derive = { path = "lib/flows-derive" }
 flows-hash = { path = "lib/flows-hash" }
+flows-http = { path = "lib/flows-http" }
 flows-image = { path = "lib/flows-image" }
 flows-io = { path = "lib/flows-io" }
 flows-json = { path = "lib/flows-json" }

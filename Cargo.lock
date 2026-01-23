@@ -486,6 +486,7 @@ dependencies = [
  "flows-datafusion",
  "flows-derive",
  "flows-hash",
+ "flows-http",
  "flows-image",
  "flows-io",
  "flows-json",
@@ -535,6 +536,13 @@ dependencies = [
 
 [[package]]
 name = "flows-hash"
+version = "0.0.3"
+dependencies = [
+ "async-flow",
+]
+
+[[package]]
+name = "flows-http"
 version = "0.0.3"
 dependencies = [
  "async-flow",
