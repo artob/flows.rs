@@ -14,18 +14,19 @@ pub enum Error {
     #[error("missing URL host")]
     MissingUrlHost,
 
-    #[error("failed TCP connection: {0}")]
+    #[cfg(feature = "std")]
+    #[error("TCP connection failed: {0}")]
     TcpConnectFailed(std::io::Error),
 
-    #[error("failed HTTP handshake: {0}")]
+    #[error("HTTP handshake failed: {0}")]
     HttpHandshakeFailed(hyper::Error),
 
-    #[error("failed HTTP request: {0}")]
+    #[error("HTTP request failed: {0}")]
     HttpRequestFailed(#[from] hyper::Error),
 
     #[cfg(feature = "std")]
-    #[error("failed I/O: {0}")]
-    Stdio(#[from] std::io::Error),
+    #[error("I/O failed: {0}")]
+    StdioFailed(#[from] std::io::Error),
 
     #[error("unknown error: {0}")]
     Other(#[from] Box<dyn StdError + Send + Sync>),

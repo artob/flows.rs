@@ -1,14 +1,9 @@
 // This is free and unencumbered software released into the public domain.
 
-use super::{Error, Result};
+use super::Result;
 use alloc::boxed::Box;
 use async_flow::{Inputs, Outputs};
-use hyper::{
-    body::{Body, Incoming},
-    client::conn::http1,
-};
-use hyper_util::rt::TokioIo;
-use tokio::net::TcpStream;
+use hyper::body::{Body, Incoming};
 
 /// A block that outputs HTTP responses corresponding to input HTTP requests.
 pub async fn request<T>(
@@ -27,12 +22,18 @@ where
     Ok(())
 }
 
+#[cfg(all(feature = "http1", feature = "std"))]
 async fn execute<T>(request: http::Request<T>) -> Result<http::Response<Incoming>>
 where
     T: Body + Send + 'static,
     T::Data: Send,
     T::Error: Into<Box<dyn core::error::Error + Send + Sync>>,
 {
+    use super::Error;
+    use hyper::client::conn::http1;
+    use hyper_util::rt::TokioIo;
+    use tokio::net::TcpStream;
+
     let url = request.uri();
     let url_scheme = url.scheme().ok_or(Error::MissingUrlScheme)?;
     let url_host = url.host().ok_or(Error::MissingUrlHost)?;
@@ -53,6 +54,7 @@ where
         Ok((sender, conn)) => {
             tokio::task::spawn(async move {
                 if let Err(error) = conn.await {
+                    #[cfg(feature = "std")]
                     std::eprintln!("Connection failed: {:?}", error); // FIXME
                 }
             });
@@ -61,6 +63,17 @@ where
     };
 
     Ok(sender.send_request(request).await?)
+}
+
+#[cfg(not(all(feature = "http1", feature = "std")))]
+async fn execute<T>(_request: http::Request<T>) -> Result<http::Response<Incoming>>
+where
+    T: Body + Send + 'static,
+    T::Data: Send,
+    T::Error: Into<Box<dyn core::error::Error + Send + Sync>>,
+{
+    #[allow(unreachable_code)]
+    return Err(unimplemented!());
 }
 
 #[cfg(test)]
