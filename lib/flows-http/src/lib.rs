@@ -2,9 +2,15 @@
 
 #![no_std]
 #![forbid(unsafe_code)]
-#![allow(unused)]
+//#![allow(unused)]
 
 extern crate alloc;
 
 #[cfg(feature = "std")]
 extern crate std;
+
+mod error;
+pub use error::*;
+
+mod request;
+pub use request::*;
