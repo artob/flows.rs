@@ -3,6 +3,7 @@
 use super::Result;
 use alloc::boxed::Box;
 use async_flow::{Inputs, Outputs};
+use core::error::Error as StdError;
 use hyper::body::{Body, Incoming};
 
 /// A block that outputs HTTP responses corresponding to input HTTP requests.
@@ -11,7 +12,7 @@ pub async fn request<T>(
     responses: Outputs<Result<http::Response<Incoming>>>,
 ) -> Result<(), async_flow::Error>
 where
-    T: Body + Send + 'static,
+    T: Body + Send + 'static + Unpin,
     T::Data: Send,
     T::Error: Into<Box<dyn core::error::Error + Send + Sync>>,
 {
@@ -22,12 +23,16 @@ where
     Ok(())
 }
 
-#[cfg(all(feature = "http1", feature = "std"))]
+#[cfg(all(
+    feature = "std",
+    all(feature = "http1", not(feature = "http2")),
+    not(feature = "tls")
+))]
 async fn execute<T>(request: http::Request<T>) -> Result<http::Response<Incoming>>
 where
     T: Body + Send + 'static,
     T::Data: Send,
-    T::Error: Into<Box<dyn core::error::Error + Send + Sync>>,
+    T::Error: Into<Box<dyn StdError + Send + Sync>>,
 {
     use super::Error;
     use hyper::client::conn::http1;
@@ -65,7 +70,48 @@ where
     Ok(sender.send_request(request).await?)
 }
 
-#[cfg(not(all(feature = "http1", feature = "std")))]
+#[cfg(all(
+    feature = "std",
+    any(feature = "http1", feature = "http2"),
+    feature = "tls"
+))]
+async fn execute<T>(request: http::Request<T>) -> Result<http::Response<Incoming>>
+where
+    T: Body + Send + 'static + Unpin,
+    T::Data: Send,
+    T::Error: Into<Box<dyn StdError + Send + Sync>>,
+{
+    use super::Error;
+    use hyper_util::{client::legacy::Client, rt::TokioExecutor};
+    use rustls::ClientConfig;
+    use rustls_platform_verifier::ConfigVerifierExt;
+
+    let url = request.uri();
+    let _ = url.scheme().ok_or(Error::MissingUrlScheme)?;
+    let _ = url.host().ok_or(Error::MissingUrlHost)?;
+
+    let tls_config = ClientConfig::with_platform_verifier();
+    let http_connector = hyper_rustls::HttpsConnectorBuilder::new().with_tls_config(tls_config);
+
+    #[cfg(all(feature = "http1", not(feature = "http2")))]
+    let http_connector = http_connector.https_or_http().enable_http1();
+
+    #[cfg(all(feature = "http2", not(feature = "http1")))]
+    let http_connector = http_connector.https_only().enable_http2();
+
+    #[cfg(all(feature = "http1", feature = "http2"))]
+    let http_connector = http_connector.https_or_http().enable_http1().enable_http2();
+
+    let http_client: Client<_, T> =
+        Client::builder(TokioExecutor::new()).build(http_connector.build());
+
+    Ok(http_client
+        .request(request)
+        .await
+        .map_err(|_e| Error::Other(Box::new(_e)))?)
+}
+
+#[cfg(any(not(feature = "std"), not(any(feature = "http1", feature = "http2"))))]
 async fn execute<T>(_request: http::Request<T>) -> Result<http::Response<Incoming>>
 where
     T: Body + Send + 'static,
@@ -83,6 +129,7 @@ mod tests {
     use async_flow::{Channel, InputPort};
     use core::error::Error;
 
+    #[cfg(any(feature = "http1", feature = "http2"))]
     #[tokio::test]
     async fn test_request() -> Result<(), Box<dyn Error>> {
         let mut in_ = Channel::bounded(1);
@@ -90,7 +137,13 @@ mod tests {
 
         let fetcher = tokio::spawn(request(in_.rx, out.tx));
 
-        for url in ["http://httpbin.org/ip"] {
+        #[cfg(all(feature = "http1", not(feature = "http2")))]
+        let urls = ["http://httpbin.org/ip"];
+
+        #[cfg(feature = "http2")]
+        let urls = ["https://ar.to/robots.txt"];
+
+        for url in urls {
             use hyper::header::HOST;
             let url = url
                 .parse::<http::Uri>()
@@ -112,6 +165,7 @@ mod tests {
         let _ = tokio::join!(fetcher);
 
         let outputs = out.rx.recv_all().await.unwrap();
+        #[cfg(feature = "std")]
         std::eprintln!("{:?}", outputs); // DEBUG
         assert_eq!(outputs.len(), 1);
 

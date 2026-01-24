@@ -18,14 +18,15 @@ publish.workspace = true
 
 [features]
 default = ["all", "std"]
-all = ["http1"]
+all = ["http1", "http2"]
 std = ["async-flow/std"]
-unstable = ["http2"]
+unstable = []
 
-http1 = ["hyper/http1"]
-http2 = ["hyper/http2", "tls"]
+# Features:
+http1 = ["hyper/http1", "hyper-rustls?/http1", "hyper-util/http1"]
+http2 = ["hyper/http2", "hyper-rustls?/http2", "hyper-util/http2", "tls"]
 tls = ["rustls"]
-rustls = []
+rustls = ["dep:hyper-rustls", "dep:rustls", "dep:rustls-platform-verifier"]
 
 [dependencies]
 async-flow.workspace = true
@@ -34,6 +35,11 @@ hyper = { version = "1", default-features = false, features = ["client"] }
 hyper-util = { version = "0.1", default-features = false, features = ["tokio"] }
 thiserror = { version = "2", default-features = false }
 tokio = { version = "1", default-features = false, features = ["net"] }
+
+# Features:
+hyper-rustls = { version = "0.27", default-features = false, optional = true }
+rustls = { version = "0.23", default-features = false, features = ["ring"], optional = true }
+rustls-platform-verifier = { version = "0.5", default-features = false, optional = true }
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 
