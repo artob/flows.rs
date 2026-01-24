@@ -6,7 +6,7 @@ version.workspace = true
 authors.workspace = true
 edition.workspace = true
 #rust-version.workspace = true
-description = "Building blocks for flow-based HTTP clients & servers."
+description = "Building blocks for flow-based HTTP requests & responses."
 #documentation.workspace = true
 readme.workspace = true
 homepage.workspace = true
@@ -15,6 +15,9 @@ license.workspace = true
 keywords.workspace = true
 categories.workspace = true
 publish.workspace = true
+
+[package.metadata.readme]
+title = "Flows.rs: HTTP Requests & Responses"
 
 [features]
 default = ["all", "std"]

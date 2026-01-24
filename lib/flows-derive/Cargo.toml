@@ -6,7 +6,7 @@ version.workspace = true
 authors.workspace = true
 edition.workspace = true
 #rust-version.workspace = true
-description = "Macros for flow-based programming (FBP)."
+description = "Derive macros for flow-based programming (FBP)."
 #documentation.workspace = true
 readme.workspace = true
 homepage.workspace = true
@@ -15,6 +15,9 @@ license.workspace = true
 keywords.workspace = true
 categories.workspace = true
 publish.workspace = true
+
+[package.metadata.readme]
+title = "Flows.rs: Derive Macros"
 
 [features]
 default = ["all", "std"]

@@ -32,6 +32,11 @@
       },
       "publish": {
         "workspace": true
+      },
+      "metadata": {
+        "readme": {
+          "title": "Flows.rs"
+        }
       }
     },
     "features": {
@@ -45,6 +50,7 @@
         "datafusion",
         "derive",
         "hash",
+        "http",
         "image",
         "io",
         "json",
@@ -59,6 +65,7 @@
         "flows-datafusion?/std",
         "flows-derive?/std",
         "flows-hash?/std",
+        "flows-http?/std",
         "flows-image?/std",
         "flows-io?/std",
         "flows-json?/std",
@@ -81,6 +88,9 @@
       ],
       "hash": [
         "dep:flows-hash"
+      ],
+      "http": [
+        "dep:flows-http"
       ],
       "image": [
         "dep:flows-image"
@@ -135,6 +145,13 @@
         "optional": true
       },
       "flows-hash": {
+        "workspace": true,
+        "features": [
+          "all"
+        ],
+        "optional": true
+      },
+      "flows-http": {
         "workspace": true,
         "features": [
           "all"
@@ -223,6 +240,11 @@
       },
       "publish": {
         "workspace": true
+      },
+      "metadata": {
+        "readme": {
+          "title": "Flows.rs: Data Processing with Apache Arrow"
+        }
       }
     },
     "features": {
@@ -303,6 +325,11 @@
       },
       "publish": {
         "workspace": true
+      },
+      "metadata": {
+        "readme": {
+          "title": "Flows.rs: Audio Processing"
+        }
       }
     },
     "features": {
@@ -363,6 +390,11 @@
       },
       "publish": {
         "workspace": true
+      },
+      "metadata": {
+        "readme": {
+          "title": "Flows.rs: Query Processing with Apache DataFusion"
+        }
       }
     },
     "features": {
@@ -429,7 +461,7 @@
       "edition": {
         "workspace": true
       },
-      "description": "Macros for flow-based programming (FBP).",
+      "description": "Derive macros for flow-based programming (FBP).",
       "readme": {
         "workspace": true
       },
@@ -450,6 +482,11 @@
       },
       "publish": {
         "workspace": true
+      },
+      "metadata": {
+        "readme": {
+          "title": "Flows.rs: Derive Macros"
+        }
       }
     },
     "features": {
@@ -510,6 +547,11 @@
       },
       "publish": {
         "workspace": true
+      },
+      "metadata": {
+        "readme": {
+          "title": "Flows.rs: Cryptographic Hashing"
+        }
       }
     },
     "features": {
@@ -549,7 +591,7 @@
       "edition": {
         "workspace": true
       },
-      "description": "Building blocks for flow-based HTTP clients & servers.",
+      "description": "Building blocks for flow-based HTTP requests & responses.",
       "readme": {
         "workspace": true
       },
@@ -570,6 +612,11 @@
       },
       "publish": {
         "workspace": true
+      },
+      "metadata": {
+        "readme": {
+          "title": "Flows.rs: HTTP Requests & Responses"
+        }
       }
     },
     "features": {
@@ -577,15 +624,84 @@
         "all",
         "std"
       ],
-      "all": [],
+      "all": [
+        "http1",
+        "http2"
+      ],
       "std": [
         "async-flow/std"
       ],
-      "unstable": []
+      "unstable": [],
+      "http1": [
+        "hyper/http1",
+        "hyper-rustls?/http1",
+        "hyper-util/http1"
+      ],
+      "http2": [
+        "hyper/http2",
+        "hyper-rustls?/http2",
+        "hyper-util/http2",
+        "tls"
+      ],
+      "tls": [
+        "rustls"
+      ],
+      "rustls": [
+        "dep:hyper-rustls",
+        "dep:rustls",
+        "dep:rustls-platform-verifier"
+      ]
     },
     "dependencies": {
       "async-flow": {
         "workspace": true
+      },
+      "http": {
+        "version": "1.4",
+        "default-features": false
+      },
+      "hyper": {
+        "version": "1",
+        "default-features": false,
+        "features": [
+          "client"
+        ]
+      },
+      "hyper-util": {
+        "version": "0.1",
+        "default-features": false,
+        "features": [
+          "tokio"
+        ]
+      },
+      "thiserror": {
+        "version": "2",
+        "default-features": false
+      },
+      "tokio": {
+        "version": "1",
+        "default-features": false,
+        "features": [
+          "net"
+        ]
+      },
+      "hyper-rustls": {
+        "version": "0.27",
+        "default-features": false,
+        "optional": true
+      },
+      "rustls": {
+        "version": "0.23",
+        "default-features": false,
+        "features": [
+          "ring"
+        ],
+        "optional": true
+      },
+      "rustls-platform-verifier": {
+        "version": "0.5",
+        "default-features": false,
+        "optional": true
       }
     },
     "target": {
@@ -630,6 +746,11 @@
       },
       "publish": {
         "workspace": true
+      },
+      "metadata": {
+        "readme": {
+          "title": "Flows.rs: Image Processing"
+        }
       }
     },
     "features": {
@@ -690,6 +811,11 @@
       },
       "publish": {
         "workspace": true
+      },
+      "metadata": {
+        "readme": {
+          "title": "Flows.rs: I/O Readers & Writers"
+        }
       }
     },
     "features": {
@@ -750,6 +876,11 @@
       },
       "publish": {
         "workspace": true
+      },
+      "metadata": {
+        "readme": {
+          "title": "Flows.rs: JSON Encoding & Decoding"
+        }
       }
     },
     "features": {
@@ -821,6 +952,11 @@
       },
       "publish": {
         "workspace": true
+      },
+      "metadata": {
+        "readme": {
+          "title": "Flows.rs: Mathematical Operations"
+        }
       }
     },
     "features": {
@@ -889,6 +1025,11 @@
       },
       "publish": {
         "workspace": true
+      },
+      "metadata": {
+        "readme": {
+          "title": "Flows.rs: Random Number Generation"
+        }
       }
     },
     "features": {
@@ -949,6 +1090,11 @@
       },
       "publish": {
         "workspace": true
+      },
+      "metadata": {
+        "readme": {
+          "title": "Flows.rs: Text Processing"
+        }
       }
     },
     "features": {

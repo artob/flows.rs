@@ -30,8 +30,8 @@ standard, reusable dataflow blocks for common use cases.
 
 ## ✨ Features
 
-- Provides components for flow-based programming (FBP) based on [Tokio].
-- Supports dataflow systems by providing reusable components called blocks.
+- Provides components for [flow-based programming] (FBP) based on [Tokio].
+- Enables dataflow systems through reusable components called blocks.
 - Built on the dataflow primitives provided by the [Async-Flow] project.
 - Supports opting out of any feature using comprehensive feature flags.
 - Adheres to the Rust API Guidelines in its [naming conventions].
@@ -105,9 +105,9 @@ async fn add_ints(mut lhs: Inputs<i64>, mut rhs: Inputs<i64>, sums: Outputs<i64>
 | [flows-arrow](https://github.com/artob/flows.rs/tree/master/lib/flows-arrow) | Flow-based data processing with Apache Arrow. | [![Package](https://img.shields.io/crates/v/flows-arrow)](https://crates.io/crates/flows-arrow) | [![Documentation](https://img.shields.io/docsrs/flows-arrow?label=docs.rs)](https://docs.rs/flows-arrow) |
 | [flows-audio](https://github.com/artob/flows.rs/tree/master/lib/flows-audio) | Flow-based audio processing. | [![Package](https://img.shields.io/crates/v/flows-audio)](https://crates.io/crates/flows-audio) | [![Documentation](https://img.shields.io/docsrs/flows-audio?label=docs.rs)](https://docs.rs/flows-audio) |
 | [flows-datafusion](https://github.com/artob/flows.rs/tree/master/lib/flows-datafusion) | Flow-based query processing with Apache DataFusion. | [![Package](https://img.shields.io/crates/v/flows-datafusion)](https://crates.io/crates/flows-datafusion) | [![Documentation](https://img.shields.io/docsrs/flows-datafusion?label=docs.rs)](https://docs.rs/flows-datafusion) |
-| [flows-derive](https://github.com/artob/flows.rs/tree/master/lib/flows-derive) | Macros for flow-based programming (FBP). | [![Package](https://img.shields.io/crates/v/flows-derive)](https://crates.io/crates/flows-derive) | [![Documentation](https://img.shields.io/docsrs/flows-derive?label=docs.rs)](https://docs.rs/flows-derive) |
+| [flows-derive](https://github.com/artob/flows.rs/tree/master/lib/flows-derive) | Derive macros for flow-based programming (FBP). | [![Package](https://img.shields.io/crates/v/flows-derive)](https://crates.io/crates/flows-derive) | [![Documentation](https://img.shields.io/docsrs/flows-derive?label=docs.rs)](https://docs.rs/flows-derive) |
 | [flows-hash](https://github.com/artob/flows.rs/tree/master/lib/flows-hash) | Flow-based cryptographic hashing. | [![Package](https://img.shields.io/crates/v/flows-hash)](https://crates.io/crates/flows-hash) | [![Documentation](https://img.shields.io/docsrs/flows-hash?label=docs.rs)](https://docs.rs/flows-hash) |
-| [flows-http](https://github.com/artob/flows.rs/tree/master/lib/flows-http) | Flow-based HTTP clients & servers. | [![Package](https://img.shields.io/crates/v/flows-http)](https://crates.io/crates/flows-http) | [![Documentation](https://img.shields.io/docsrs/flows-http?label=docs.rs)](https://docs.rs/flows-http) |
+| [flows-http](https://github.com/artob/flows.rs/tree/master/lib/flows-http) | Flow-based HTTP requests & responses. | [![Package](https://img.shields.io/crates/v/flows-http)](https://crates.io/crates/flows-http) | [![Documentation](https://img.shields.io/docsrs/flows-http?label=docs.rs)](https://docs.rs/flows-http) |
 | [flows-image](https://github.com/artob/flows.rs/tree/master/lib/flows-image) | Flow-based image processing. | [![Package](https://img.shields.io/crates/v/flows-image)](https://crates.io/crates/flows-image) | [![Documentation](https://img.shields.io/docsrs/flows-image?label=docs.rs)](https://docs.rs/flows-image) |
 | [flows-io](https://github.com/artob/flows.rs/tree/master/lib/flows-io) | Flow-based I/O readers & writers. | [![Package](https://img.shields.io/crates/v/flows-io)](https://crates.io/crates/flows-io) | [![Documentation](https://img.shields.io/docsrs/flows-io?label=docs.rs)](https://docs.rs/flows-io) |
 | [flows-json](https://github.com/artob/flows.rs/tree/master/lib/flows-json) | Flow-based JSON encoding & decoding. | [![Package](https://img.shields.io/crates/v/flows-json)](https://crates.io/crates/flows-json) | [![Documentation](https://img.shields.io/docsrs/flows-json?label=docs.rs)](https://docs.rs/flows-json) |
@@ -150,6 +150,7 @@ git clone https://github.com/artob/flows.rs.git
 [![Share on LinkedIn](https://img.shields.io/badge/share%20on-linkedin-3949AB?logo=linkedin)](https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/artob/flows.rs)
 
 [Async-Flow]: https://github.com/artob/async-flow
+[Flows.rs]: https://github.com/artob/flows.rs
 [Tokio]: https://tokio.rs
 [flow-based programming]: https://jpaulm.github.io/fbp/
 [naming conventions]: https://rust-lang.github.io/api-guidelines/naming.html
