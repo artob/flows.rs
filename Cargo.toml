@@ -20,7 +20,7 @@ default-members = [
 resolver = "2"
 
 [workspace.package]
-version = "0.0.4"
+version = "0.0.5"
 authors = ["Arto Bendiken"]
 edition = "2024"
 #rust-version = "1.85"
@@ -35,19 +35,19 @@ categories = ["asynchronous", "concurrency", "network-programming", "no-std"]
 publish = true
 
 [workspace.dependencies]
-flows = { version = "0.0.4", default-features = false }
-flows-arrow = { version = "0.0.4", default-features = false }
-flows-audio = { version = "0.0.4", default-features = false }
-flows-datafusion = { version = "0.0.4", default-features = false }
-flows-derive = { version = "0.0.4", default-features = false }
-flows-hash = { version = "0.0.4", default-features = false }
-flows-http = { version = "0.0.4", default-features = false }
-flows-image = { version = "0.0.4", default-features = false }
-flows-io = { version = "0.0.4", default-features = false }
-flows-json = { version = "0.0.4", default-features = false }
-flows-math = { version = "0.0.4", default-features = false }
-flows-rand = { version = "0.0.4", default-features = false }
-flows-text = { version = "0.0.4", default-features = false }
+flows = { version = "0.0.5", default-features = false }
+flows-arrow = { version = "0.0.5", default-features = false }
+flows-audio = { version = "0.0.5", default-features = false }
+flows-datafusion = { version = "0.0.5", default-features = false }
+flows-derive = { version = "0.0.5", default-features = false }
+flows-hash = { version = "0.0.5", default-features = false }
+flows-http = { version = "0.0.5", default-features = false }
+flows-image = { version = "0.0.5", default-features = false }
+flows-io = { version = "0.0.5", default-features = false }
+flows-json = { version = "0.0.5", default-features = false }
+flows-math = { version = "0.0.5", default-features = false }
+flows-rand = { version = "0.0.5", default-features = false }
+flows-text = { version = "0.0.5", default-features = false }
 
 async-flow = { version = "0.1.1", default-features = false, features = ["tokio"] }
 tokio = { version = "1.49", default-features = false, features = ["macros", "rt", "sync"] }
