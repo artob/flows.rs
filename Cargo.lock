@@ -510,7 +510,7 @@ dependencies = [
 
 [[package]]
 name = "flows"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "async-flow",
  "flows-arrow",
@@ -530,7 +530,7 @@ dependencies = [
 
 [[package]]
 name = "flows-arrow"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "arrow-array",
  "arrow-schema",
@@ -541,14 +541,14 @@ dependencies = [
 
 [[package]]
 name = "flows-audio"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "async-flow",
 ]
 
 [[package]]
 name = "flows-datafusion"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "arrow-arith",
  "arrow-array",
@@ -561,21 +561,21 @@ dependencies = [
 
 [[package]]
 name = "flows-derive"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "async-flow",
 ]
 
 [[package]]
 name = "flows-hash"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "async-flow",
 ]
 
 [[package]]
 name = "flows-http"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "async-flow",
  "http",
@@ -590,21 +590,21 @@ dependencies = [
 
 [[package]]
 name = "flows-image"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "async-flow",
 ]
 
 [[package]]
 name = "flows-io"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "async-flow",
 ]
 
 [[package]]
 name = "flows-json"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "async-flow",
  "serde_json",
@@ -612,7 +612,7 @@ dependencies = [
 
 [[package]]
 name = "flows-math"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "async-flow",
  "tokio",
@@ -620,14 +620,14 @@ dependencies = [
 
 [[package]]
 name = "flows-rand"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "async-flow",
 ]
 
 [[package]]
 name = "flows-text"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "async-flow",
  "tokio",
