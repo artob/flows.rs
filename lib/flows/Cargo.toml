@@ -26,14 +26,18 @@ all = [
     "audio",
     "datafusion",
     "derive",
+    "dns",
     "hash",
     "http",
     "image",
     "io",
     "json",
     "math",
+    "mdns",
+    "pubsub",
     "rand",
     "text",
+    "video",
 ]
 std = [
     "async-flow/std",
@@ -41,14 +45,18 @@ std = [
     "flows-audio?/std",
     "flows-datafusion?/std",
     "flows-derive?/std",
+    "flows-dns?/std",
     "flows-hash?/std",
     "flows-http?/std",
     "flows-image?/std",
     "flows-io?/std",
     "flows-json?/std",
     "flows-math?/std",
+    "flows-mdns?/std",
+    "flows-pubsub?/std",
     "flows-rand?/std",
     "flows-text?/std",
+    "flows-video?/std",
 ]
 unstable = []
 
@@ -57,14 +65,18 @@ arrow = ["dep:flows-arrow"]
 audio = ["dep:flows-audio"]
 datafusion = ["dep:flows-datafusion"]
 derive = ["dep:flows-derive"]
+dns = ["dep:flows-dns"]
 hash = ["dep:flows-hash"]
 http = ["dep:flows-http"]
 image = ["dep:flows-image"]
 io = ["dep:flows-io"]
 json = ["dep:flows-json"]
 math = ["dep:flows-math"]
+mdns = ["dep:flows-mdns"]
+pubsub = ["dep:flows-pubsub"]
 rand = ["dep:flows-rand"]
 text = ["dep:flows-text"]
+video = ["dep:flows-video"]
 
 # Integrations:
 serde = []
@@ -75,14 +87,18 @@ flows-arrow = { workspace = true, features = ["all"], optional = true }
 flows-audio = { workspace = true, features = ["all"], optional = true }
 flows-datafusion = { workspace = true, features = ["all"], optional = true }
 flows-derive = { workspace = true, features = ["all"], optional = true }
+flows-dns = { workspace = true, features = ["all"], optional = true }
 flows-hash = { workspace = true, features = ["all"], optional = true }
 flows-http = { workspace = true, features = ["all"], optional = true }
 flows-image = { workspace = true, features = ["all"], optional = true }
 flows-io = { workspace = true, features = ["all"], optional = true }
 flows-json = { workspace = true, features = ["all"], optional = true }
 flows-math = { workspace = true, features = ["all"], optional = true }
+flows-mdns = { workspace = true, features = ["all"], optional = true }
+flows-pubsub = { workspace = true, features = ["all"], optional = true }
 flows-rand = { workspace = true, features = ["all"], optional = true }
 flows-text = { workspace = true, features = ["all"], optional = true }
+flows-video = { workspace = true, features = ["all"], optional = true }
 
 [dev-dependencies]
 tokio.workspace = true

@@ -49,14 +49,18 @@
         "audio",
         "datafusion",
         "derive",
+        "dns",
         "hash",
         "http",
         "image",
         "io",
         "json",
         "math",
+        "mdns",
+        "pubsub",
         "rand",
-        "text"
+        "text",
+        "video"
       ],
       "std": [
         "async-flow/std",
@@ -64,14 +68,18 @@
         "flows-audio?/std",
         "flows-datafusion?/std",
         "flows-derive?/std",
+        "flows-dns?/std",
         "flows-hash?/std",
         "flows-http?/std",
         "flows-image?/std",
         "flows-io?/std",
         "flows-json?/std",
         "flows-math?/std",
+        "flows-mdns?/std",
+        "flows-pubsub?/std",
         "flows-rand?/std",
-        "flows-text?/std"
+        "flows-text?/std",
+        "flows-video?/std"
       ],
       "unstable": [],
       "arrow": [
@@ -85,6 +93,9 @@
       ],
       "derive": [
         "dep:flows-derive"
+      ],
+      "dns": [
+        "dep:flows-dns"
       ],
       "hash": [
         "dep:flows-hash"
@@ -104,11 +115,20 @@
       "math": [
         "dep:flows-math"
       ],
+      "mdns": [
+        "dep:flows-mdns"
+      ],
+      "pubsub": [
+        "dep:flows-pubsub"
+      ],
       "rand": [
         "dep:flows-rand"
       ],
       "text": [
         "dep:flows-text"
+      ],
+      "video": [
+        "dep:flows-video"
       ],
       "serde": []
     },
@@ -138,6 +158,13 @@
         "optional": true
       },
       "flows-derive": {
+        "workspace": true,
+        "features": [
+          "all"
+        ],
+        "optional": true
+      },
+      "flows-dns": {
         "workspace": true,
         "features": [
           "all"
@@ -186,6 +213,20 @@
         ],
         "optional": true
       },
+      "flows-mdns": {
+        "workspace": true,
+        "features": [
+          "all"
+        ],
+        "optional": true
+      },
+      "flows-pubsub": {
+        "workspace": true,
+        "features": [
+          "all"
+        ],
+        "optional": true
+      },
       "flows-rand": {
         "workspace": true,
         "features": [
@@ -194,6 +235,13 @@
         "optional": true
       },
       "flows-text": {
+        "workspace": true,
+        "features": [
+          "all"
+        ],
+        "optional": true
+      },
+      "flows-video": {
         "workspace": true,
         "features": [
           "all"
@@ -220,9 +268,7 @@
         "workspace": true
       },
       "description": "Building blocks for flow-based data processing with Apache Arrow.",
-      "readme": {
-        "workspace": true
-      },
+      "readme": true,
       "homepage": {
         "workspace": true
       },
@@ -305,9 +351,7 @@
         "workspace": true
       },
       "description": "Building blocks for flow-based audio processing.",
-      "readme": {
-        "workspace": true
-      },
+      "readme": true,
       "homepage": {
         "workspace": true
       },
@@ -370,9 +414,7 @@
         "workspace": true
       },
       "description": "Building blocks for flow-based query processing with Apache DataFusion.",
-      "readme": {
-        "workspace": true
-      },
+      "readme": true,
       "homepage": {
         "workspace": true
       },
@@ -462,9 +504,7 @@
         "workspace": true
       },
       "description": "Derive macros for flow-based programming (FBP).",
-      "readme": {
-        "workspace": true
-      },
+      "readme": true,
       "homepage": {
         "workspace": true
       },
@@ -516,6 +556,69 @@
   },
   {
     "package": {
+      "name": "flows-dns",
+      "version": {
+        "workspace": true
+      },
+      "authors": {
+        "workspace": true
+      },
+      "edition": {
+        "workspace": true
+      },
+      "description": "Building blocks for flow-based DNS resolution.",
+      "readme": true,
+      "homepage": {
+        "workspace": true
+      },
+      "repository": {
+        "workspace": true
+      },
+      "license": {
+        "workspace": true
+      },
+      "keywords": {
+        "workspace": true
+      },
+      "categories": {
+        "workspace": true
+      },
+      "publish": {
+        "workspace": true
+      },
+      "metadata": {
+        "readme": {
+          "title": "Flows.rs: DNS Resolution"
+        }
+      }
+    },
+    "features": {
+      "default": [
+        "all",
+        "std"
+      ],
+      "all": [],
+      "std": [
+        "async-flow/std"
+      ],
+      "unstable": []
+    },
+    "dependencies": {
+      "async-flow": {
+        "workspace": true
+      }
+    },
+    "target": {
+      "cfg(not(target_family = \"wasm\"))": {
+        "dependencies": {}
+      },
+      "cfg(target_family = \"wasm\")": {
+        "dependencies": {}
+      }
+    }
+  },
+  {
+    "package": {
       "name": "flows-hash",
       "version": {
         "workspace": true
@@ -527,9 +630,7 @@
         "workspace": true
       },
       "description": "Building blocks for flow-based cryptographic hashing.",
-      "readme": {
-        "workspace": true
-      },
+      "readme": true,
       "homepage": {
         "workspace": true
       },
@@ -592,9 +693,7 @@
         "workspace": true
       },
       "description": "Building blocks for flow-based HTTP requests & responses.",
-      "readme": {
-        "workspace": true
-      },
+      "readme": true,
       "homepage": {
         "workspace": true
       },
@@ -726,9 +825,7 @@
         "workspace": true
       },
       "description": "Building blocks for flow-based image processing.",
-      "readme": {
-        "workspace": true
-      },
+      "readme": true,
       "homepage": {
         "workspace": true
       },
@@ -791,9 +888,7 @@
         "workspace": true
       },
       "description": "Building blocks for flow-based I/O readers & writers.",
-      "readme": {
-        "workspace": true
-      },
+      "readme": true,
       "homepage": {
         "workspace": true
       },
@@ -856,9 +951,7 @@
         "workspace": true
       },
       "description": "Building blocks for flow-based JSON encoding & decoding.",
-      "readme": {
-        "workspace": true
-      },
+      "readme": true,
       "homepage": {
         "workspace": true
       },
@@ -932,9 +1025,7 @@
         "workspace": true
       },
       "description": "Building blocks for flow-based mathematical operations.",
-      "readme": {
-        "workspace": true
-      },
+      "readme": true,
       "homepage": {
         "workspace": true
       },
@@ -994,6 +1085,132 @@
   },
   {
     "package": {
+      "name": "flows-mdns",
+      "version": {
+        "workspace": true
+      },
+      "authors": {
+        "workspace": true
+      },
+      "edition": {
+        "workspace": true
+      },
+      "description": "Building blocks for flow-based mDNS discovery.",
+      "readme": true,
+      "homepage": {
+        "workspace": true
+      },
+      "repository": {
+        "workspace": true
+      },
+      "license": {
+        "workspace": true
+      },
+      "keywords": {
+        "workspace": true
+      },
+      "categories": {
+        "workspace": true
+      },
+      "publish": {
+        "workspace": true
+      },
+      "metadata": {
+        "readme": {
+          "title": "Flows.rs: mDNS Discovery"
+        }
+      }
+    },
+    "features": {
+      "default": [
+        "all",
+        "std"
+      ],
+      "all": [],
+      "std": [
+        "async-flow/std"
+      ],
+      "unstable": []
+    },
+    "dependencies": {
+      "async-flow": {
+        "workspace": true
+      }
+    },
+    "target": {
+      "cfg(not(target_family = \"wasm\"))": {
+        "dependencies": {}
+      },
+      "cfg(target_family = \"wasm\")": {
+        "dependencies": {}
+      }
+    }
+  },
+  {
+    "package": {
+      "name": "flows-pubsub",
+      "version": {
+        "workspace": true
+      },
+      "authors": {
+        "workspace": true
+      },
+      "edition": {
+        "workspace": true
+      },
+      "description": "Building blocks for flow-based publish/subscribe.",
+      "readme": true,
+      "homepage": {
+        "workspace": true
+      },
+      "repository": {
+        "workspace": true
+      },
+      "license": {
+        "workspace": true
+      },
+      "keywords": {
+        "workspace": true
+      },
+      "categories": {
+        "workspace": true
+      },
+      "publish": {
+        "workspace": true
+      },
+      "metadata": {
+        "readme": {
+          "title": "Flows.rs: Publish/Subscribe"
+        }
+      }
+    },
+    "features": {
+      "default": [
+        "all",
+        "std"
+      ],
+      "all": [],
+      "std": [
+        "async-flow/std"
+      ],
+      "unstable": []
+    },
+    "dependencies": {
+      "async-flow": {
+        "workspace": true
+      }
+    },
+    "target": {
+      "cfg(not(target_family = \"wasm\"))": {
+        "dependencies": {}
+      },
+      "cfg(target_family = \"wasm\")": {
+        "dependencies": {}
+      }
+    }
+  },
+  {
+    "package": {
       "name": "flows-rand",
       "version": {
         "workspace": true
@@ -1005,9 +1222,7 @@
         "workspace": true
       },
       "description": "Building blocks for flow-based random number generation.",
-      "readme": {
-        "workspace": true
-      },
+      "readme": true,
       "homepage": {
         "workspace": true
       },
@@ -1070,9 +1285,7 @@
         "workspace": true
       },
       "description": "Building blocks for flow-based text processing.",
-      "readme": {
-        "workspace": true
-      },
+      "readme": true,
       "homepage": {
         "workspace": true
       },
@@ -1124,6 +1337,69 @@
     "dev-dependencies": {
       "tokio": {
         "workspace": true
+      }
+    }
+  },
+  {
+    "package": {
+      "name": "flows-video",
+      "version": {
+        "workspace": true
+      },
+      "authors": {
+        "workspace": true
+      },
+      "edition": {
+        "workspace": true
+      },
+      "description": "Building blocks for flow-based video processing.",
+      "readme": true,
+      "homepage": {
+        "workspace": true
+      },
+      "repository": {
+        "workspace": true
+      },
+      "license": {
+        "workspace": true
+      },
+      "keywords": {
+        "workspace": true
+      },
+      "categories": {
+        "workspace": true
+      },
+      "publish": {
+        "workspace": true
+      },
+      "metadata": {
+        "readme": {
+          "title": "Flows.rs: Video Processing"
+        }
+      }
+    },
+    "features": {
+      "default": [
+        "all",
+        "std"
+      ],
+      "all": [],
+      "std": [
+        "async-flow/std"
+      ],
+      "unstable": []
+    },
+    "dependencies": {
+      "async-flow": {
+        "workspace": true
+      }
+    },
+    "target": {
+      "cfg(not(target_family = \"wasm\"))": {
+        "dependencies": {}
+      },
+      "cfg(target_family = \"wasm\")": {
+        "dependencies": {}
       }
     }
   }

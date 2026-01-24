@@ -8,14 +8,18 @@ default-members = [
     "lib/flows-audio",
     "lib/flows-datafusion",
     "lib/flows-derive",
+    "lib/flows-dns",
     "lib/flows-hash",
     "lib/flows-http",
     "lib/flows-image",
     "lib/flows-io",
     "lib/flows-json",
     "lib/flows-math",
+    "lib/flows-mdns",
+    "lib/flows-pubsub",
     "lib/flows-rand",
-    "lib/flows-text"
+    "lib/flows-text",
+    "lib/flows-video",
 ]
 resolver = "2"
 
@@ -40,14 +44,18 @@ flows-arrow = { version = "0.0.5", default-features = false }
 flows-audio = { version = "0.0.5", default-features = false }
 flows-datafusion = { version = "0.0.5", default-features = false }
 flows-derive = { version = "0.0.5", default-features = false }
+flows-dns = { version = "0.0.5", default-features = false }
 flows-hash = { version = "0.0.5", default-features = false }
 flows-http = { version = "0.0.5", default-features = false }
 flows-image = { version = "0.0.5", default-features = false }
 flows-io = { version = "0.0.5", default-features = false }
 flows-json = { version = "0.0.5", default-features = false }
 flows-math = { version = "0.0.5", default-features = false }
+flows-mdns = { version = "0.0.5", default-features = false }
+flows-pubsub = { version = "0.0.5", default-features = false }
 flows-rand = { version = "0.0.5", default-features = false }
 flows-text = { version = "0.0.5", default-features = false }
+flows-video = { version = "0.0.5", default-features = false }
 
 async-flow = { version = "0.1.1", default-features = false, features = ["tokio"] }
 tokio = { version = "1.49", default-features = false, features = ["macros", "rt", "sync"] }
@@ -60,11 +68,15 @@ flows-arrow = { path = "lib/flows-arrow" }
 flows-audio = { path = "lib/flows-audio" }
 flows-datafusion = { path = "lib/flows-datafusion" }
 flows-derive = { path = "lib/flows-derive" }
+flows-dns = { path = "lib/flows-dns" }
 flows-hash = { path = "lib/flows-hash" }
 flows-http = { path = "lib/flows-http" }
 flows-image = { path = "lib/flows-image" }
 flows-io = { path = "lib/flows-io" }
 flows-json = { path = "lib/flows-json" }
 flows-math = { path = "lib/flows-math" }
+flows-mdns = { path = "lib/flows-mdns" }
+flows-pubsub = { path = "lib/flows-pubsub" }
 flows-rand = { path = "lib/flows-rand" }
 flows-text = { path = "lib/flows-text" }
+flows-video = { path = "lib/flows-video" }

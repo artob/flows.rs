@@ -517,14 +517,18 @@ dependencies = [
  "flows-audio",
  "flows-datafusion",
  "flows-derive",
+ "flows-dns",
  "flows-hash",
  "flows-http",
  "flows-image",
  "flows-io",
  "flows-json",
  "flows-math",
+ "flows-mdns",
+ "flows-pubsub",
  "flows-rand",
  "flows-text",
+ "flows-video",
  "tokio",
 ]
 
@@ -561,6 +565,13 @@ dependencies = [
 
 [[package]]
 name = "flows-derive"
+version = "0.0.5"
+dependencies = [
+ "async-flow",
+]
+
+[[package]]
+name = "flows-dns"
 version = "0.0.5"
 dependencies = [
  "async-flow",
@@ -619,6 +630,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "flows-mdns"
+version = "0.0.5"
+dependencies = [
+ "async-flow",
+]
+
+[[package]]
+name = "flows-pubsub"
+version = "0.0.5"
+dependencies = [
+ "async-flow",
+]
+
+[[package]]
 name = "flows-rand"
 version = "0.0.5"
 dependencies = [
@@ -631,6 +656,13 @@ version = "0.0.5"
 dependencies = [
  "async-flow",
  "tokio",
+]
+
+[[package]]
+name = "flows-video"
+version = "0.0.5"
+dependencies = [
+ "async-flow",
 ]
 
 [[package]]

@@ -8,7 +8,7 @@ PACKAGES = Dir['lib/**/Cargo.toml'].sort_by do |path|
   path.delete_prefix('lib/').delete_suffix('/Cargo.toml')
 end.map { Pathname(it) }.freeze
 
-task default: %w(packages.json packages.md)
+task default: %w(packages.json packages.md readmes)
 
 task readmes: PACKAGES.map { it.parent.join('README.md').to_s }.to_a - %w[lib/flows/README.md]
 
@@ -50,8 +50,8 @@ end
 
 def generate_markdown(input_paths)
   StringIO.open do |out|
-    out.puts "| Package | Summary | Crate | Documentation |"
-    out.puts "| :------ | :------ | :---- | :------------ |"
+    out.puts "| Package | Summary | Crate | Docs |"
+    out.puts "| :------ | :------ | :---- | :--- |"
     load_projects(input_paths).each do |project|
       package_name = project[:package][:name]
       package_link = "[#{package_name}](https://github.com/artob/flows.rs/tree/master/lib/#{package_name})"

@@ -1,14 +1,14 @@
-# Flows.rs: HTTP Requests & Responses
+# Flows.rs: mDNS Discovery
 
 [![License](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](https://unlicense.org)
 [![Compatibility](https://img.shields.io/badge/rust-1.85%2B-blue)](https://blog.rust-lang.org/2025/02/20/Rust-1.85.0/)
-[![Package](https://img.shields.io/crates/v/flows-http)](https://crates.io/crates/flows-http)
-[![Documentation](https://img.shields.io/docsrs/flows-http?label=docs.rs)](https://docs.rs/flows-http)
+[![Package](https://img.shields.io/crates/v/flows-mdns)](https://crates.io/crates/flows-mdns)
+[![Documentation](https://img.shields.io/docsrs/flows-mdns?label=docs.rs)](https://docs.rs/flows-mdns)
 [![Featured](https://img.shields.io/badge/awesome-fbp-lightgrey)](https://github.com/artob/awesome-fbp)
 
 _"Τὰ πάντα ῥεῖ καὶ οὐδὲν μένει" — Heraclitus_
 
-**Building blocks for flow-based HTTP requests & responses in Rust.**
+**Building blocks for flow-based mDNS discovery in Rust.**
 This package is part of [Flows.rs], a growing shrink-wrap inventory of
 standard, reusable dataflow blocks for common use cases.
 
@@ -46,7 +46,7 @@ standard, reusable dataflow blocks for common use cases.
 ### Installation via Cargo
 
 ```bash
-cargo add flows-http
+cargo add flows-mdns
 ```
 
 ## 👉 Examples
@@ -54,12 +54,12 @@ cargo add flows-http
 ### Importing the Library
 
 ```rust
-use flows_http::*;
+use flows_mdns::*;
 ```
 
 ## 📚 Reference
 
-[docs.rs/flows-http](https://docs.rs/flows-http)
+[docs.rs/flows-mdns](https://docs.rs/flows-mdns)
 
 ### Packages
 
