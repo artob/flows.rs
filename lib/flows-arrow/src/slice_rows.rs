@@ -89,10 +89,10 @@ mod tests {
     #[tokio::test]
     async fn test_slice_rows() -> Result<(), Box<dyn Error>> {
         let output = exec_slice_rows(0, Some(0)).await?;
-        assert_eq!(output, vec![]);
+        assert_eq!(output, Vec::<i32>::new());
 
         let output = exec_slice_rows(10, Some(0)).await?;
-        assert_eq!(output, vec![]);
+        assert_eq!(output, Vec::<i32>::new());
 
         let output = exec_slice_rows(0, None).await?;
         assert_eq!(output, (0..=29).collect::<Vec<i32>>());
