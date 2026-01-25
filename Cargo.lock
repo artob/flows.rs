@@ -1255,7 +1255,7 @@ dependencies = [
 
 [[package]]
 name = "flows"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "async-flow",
  "flows-arrow",
@@ -1279,7 +1279,7 @@ dependencies = [
 
 [[package]]
 name = "flows-arrow"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "arrow-array",
  "arrow-schema",
@@ -1290,7 +1290,7 @@ dependencies = [
 
 [[package]]
 name = "flows-audio"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "async-flow",
  "symphonia",
@@ -1298,7 +1298,7 @@ dependencies = [
 
 [[package]]
 name = "flows-datafusion"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "arrow-arith",
  "arrow-array",
@@ -1311,7 +1311,7 @@ dependencies = [
 
 [[package]]
 name = "flows-derive"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "async-flow",
  "darling 0.23.0",
@@ -1319,7 +1319,7 @@ dependencies = [
 
 [[package]]
 name = "flows-dns"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "async-flow",
  "hickory-resolver",
@@ -1327,7 +1327,7 @@ dependencies = [
 
 [[package]]
 name = "flows-hash"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "async-flow",
  "md-5",
@@ -1337,7 +1337,7 @@ dependencies = [
 
 [[package]]
 name = "flows-http"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "async-flow",
  "http",
@@ -1352,7 +1352,7 @@ dependencies = [
 
 [[package]]
 name = "flows-image"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "async-flow",
  "image",
@@ -1361,14 +1361,14 @@ dependencies = [
 
 [[package]]
 name = "flows-io"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "async-flow",
 ]
 
 [[package]]
 name = "flows-json"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "async-flow",
  "serde_json",
@@ -1376,7 +1376,7 @@ dependencies = [
 
 [[package]]
 name = "flows-math"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "async-flow",
  "num-traits",
@@ -1385,14 +1385,14 @@ dependencies = [
 
 [[package]]
 name = "flows-mdns"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "async-flow",
 ]
 
 [[package]]
 name = "flows-pubsub"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "async-flow",
  "async-nats",
@@ -1406,7 +1406,7 @@ dependencies = [
 
 [[package]]
 name = "flows-rand"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "async-flow",
  "getrandom 0.3.4",
@@ -1414,7 +1414,7 @@ dependencies = [
 
 [[package]]
 name = "flows-text"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "async-flow",
  "strsim",
@@ -1423,7 +1423,7 @@ dependencies = [
 
 [[package]]
 name = "flows-video"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "async-flow",
  "rav1e",
