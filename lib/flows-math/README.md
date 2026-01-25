@@ -57,6 +57,24 @@ cargo add flows-math
 use flows_math::*;
 ```
 
+#### Implementing an `add_ints` block
+
+```rust
+use flows::{Inputs, Outputs, Result};
+
+/// A block that outputs the sums of input numbers.
+async fn add_ints(mut lhs: Inputs<i64>, mut rhs: Inputs<i64>, sums: Outputs<i64>) -> Result {
+    loop {
+        let (a, b) = tokio::try_join!(lhs.recv(), rhs.recv())?;
+        match (a, b) {
+            (Some(a), Some(b)) => sums.send(a + b).await?,
+            _ => break,
+        }
+    }
+    Ok(())
+}
+```
+
 ## 📚 Reference
 
 [docs.rs/flows-math](https://docs.rs/flows-math)

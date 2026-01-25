@@ -1,3 +1,4 @@
+require 'fileutils'
 require 'json'
 require 'pathname'
 require 'stringio'
@@ -19,18 +20,28 @@ PACKAGES.each do |package_toml|
   next if package_name == 'flows'
   package_title = (package_meta[:package][:metadata][:readme][:title] rescue nil)
   package_description = package_meta[:package][:description]
+
   file package_path.join('README.md') => %[.readme/README.md.j2] do |t|
+    template_path = Pathname(t.prerequisites.first).realpath
     File.open(t.name, 'w') do |out|
-      IO.popen("minijinja-cli #{t.prerequisites.first} /dev/stdin -fjson", "r+") do |pipe|
-        pipe.puts JSON.pretty_unparse({
-          package: {
-            title: package_title,
-            name: package_name,
-            description: package_description,
-          }
-        })
-        pipe.close_write
-        out.puts pipe.read
+      Dir.chdir(package_path) do
+        FileUtils.ln_sf(template_path, 'README.md.j2')
+        begin
+          command = %W[minijinja-cli --strict README.md.j2 /dev/stdin -fjson]
+          IO.popen(command, "r+") do |pipe|
+            pipe.puts JSON.pretty_unparse({
+              package: {
+                title: package_title,
+                name: package_name,
+                description: package_description,
+              }
+            })
+            pipe.close_write
+            out.puts pipe.read
+          end
+        ensure
+          FileUtils.rm('README.md.j2')
+        end
       end
     end
   end

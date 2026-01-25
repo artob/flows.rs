@@ -57,6 +57,24 @@ cargo add flows-text
 use flows_text::*;
 ```
 
+### Implementing Blocks
+
+#### Implementing a `split_string` block
+
+```rust
+use flows::{Inputs, Outputs, Result};
+
+/// A block that splits input strings based on a delimiter.
+async fn split_string(delim: &str, mut ins: Inputs<String>, outs: Outputs<String>) -> Result {
+    while let Some(input) = ins.recv().await? {
+        for output in input.split(delim) {
+            outs.send(output.into()).await?;
+        }
+    }
+    Ok(())
+}
+```
+
 ## 📚 Reference
 
 [docs.rs/flows-text](https://docs.rs/flows-text)

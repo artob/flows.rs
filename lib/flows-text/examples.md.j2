@@ -1,0 +1,23 @@
+### Importing the Library
+
+```rust
+use {{ package.name | replace("-", "_") }}::*;
+```
+
+### Implementing Blocks
+
+#### Implementing a `split_string` block
+
+```rust
+use flows::{Inputs, Outputs, Result};
+
+/// A block that splits input strings based on a delimiter.
+async fn split_string(delim: &str, mut ins: Inputs<String>, outs: Outputs<String>) -> Result {
+    while let Some(input) = ins.recv().await? {
+        for output in input.split(delim) {
+            outs.send(output.into()).await?;
+        }
+    }
+    Ok(())
+}
+```

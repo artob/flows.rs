@@ -51,11 +51,7 @@ cargo add {{ package.name }}
 
 ## 👉 Examples
 
-### Importing the Library
-
-```rust
-use {{ package.name | replace("-", "_") }}::*;
-```
+{% include "examples.md.j2" %}
 
 ## 📚 Reference
 
@@ -63,7 +59,7 @@ use {{ package.name | replace("-", "_") }}::*;
 
 ### Packages
 
-{% include "../packages.md" %}
+{% include "../../packages.md" %}
 
 ### Integrations
 
