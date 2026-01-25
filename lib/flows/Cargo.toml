@@ -20,7 +20,13 @@ publish.workspace = true
 title = "Flows.rs"
 
 [features]
-default = ["all", "std"]
+default = ["core", "std"]
+core = [
+    "derive",
+    "io",
+    "math",
+    "text",
+]
 all = [
     "arrow",
     "audio",
@@ -60,7 +66,7 @@ std = [
 ]
 unstable = []
 
-# Crates:
+# Packages:
 arrow = ["dep:flows-arrow"]
 audio = ["dep:flows-audio"]
 datafusion = ["dep:flows-datafusion"]
@@ -83,22 +89,24 @@ serde = []
 
 [dependencies]
 async-flow.workspace = true
-flows-arrow = { workspace = true, features = ["all"], optional = true }
-flows-audio = { workspace = true, features = ["all"], optional = true }
-flows-datafusion = { workspace = true, features = ["all"], optional = true }
-flows-derive = { workspace = true, features = ["all"], optional = true }
-flows-dns = { workspace = true, features = ["all"], optional = true }
-flows-hash = { workspace = true, features = ["all"], optional = true }
-flows-http = { workspace = true, features = ["all"], optional = true }
-flows-image = { workspace = true, features = ["all"], optional = true }
-flows-io = { workspace = true, features = ["all"], optional = true }
-flows-json = { workspace = true, features = ["all"], optional = true }
-flows-math = { workspace = true, features = ["all"], optional = true }
-flows-mdns = { workspace = true, features = ["all"], optional = true }
-flows-pubsub = { workspace = true, features = ["all"], optional = true }
-flows-rand = { workspace = true, features = ["all"], optional = true }
-flows-text = { workspace = true, features = ["all"], optional = true }
-flows-video = { workspace = true, features = ["all"], optional = true }
+
+# Packages:
+flows-arrow = { workspace = true, features = [], optional = true }
+flows-audio = { workspace = true, features = [], optional = true }
+flows-datafusion = { workspace = true, features = [], optional = true }
+flows-derive = { workspace = true, features = [], optional = true }
+flows-dns = { workspace = true, features = [], optional = true }
+flows-hash = { workspace = true, features = [], optional = true }
+flows-http = { workspace = true, features = [], optional = true }
+flows-image = { workspace = true, features = [], optional = true }
+flows-io = { workspace = true, features = [], optional = true }
+flows-json = { workspace = true, features = [], optional = true }
+flows-math = { workspace = true, features = [], optional = true }
+flows-mdns = { workspace = true, features = [], optional = true }
+flows-pubsub = { workspace = true, features = [], optional = true }
+flows-rand = { workspace = true, features = [], optional = true }
+flows-text = { workspace = true, features = [], optional = true }
+flows-video = { workspace = true, features = [], optional = true }
 
 [dev-dependencies]
 tokio.workspace = true

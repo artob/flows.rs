@@ -54,7 +54,7 @@ cargo add flows
 ### Importing the Library
 
 ```rust
-use flows::{audio, hash, image, io, json, math, rand, text};
+use flows::{io, math, text};
 ```
 
 ### Implementing Blocks
