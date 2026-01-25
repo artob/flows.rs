@@ -25,8 +25,14 @@ all = []
 std = ["async-flow/std"]
 unstable = []
 
+# Codecs:
+av1 = ["dep:rav1e"]
+
 [dependencies]
 async-flow.workspace = true
+
+# Codecs:
+rav1e = { version = "0.8", default-features = false, optional = true }
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 

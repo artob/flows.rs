@@ -27,6 +27,8 @@ unstable = []
 
 [dependencies]
 async-flow.workspace = true
+image = { version = "0.25", default-features = false }
+rgb = { version = "0.8", default-features = false }
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 

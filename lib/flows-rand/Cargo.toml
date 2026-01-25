@@ -22,11 +22,12 @@ title = "Flows.rs: Random Number Generation"
 [features]
 default = ["all", "std"]
 all = []
-std = ["async-flow/std"]
+std = ["async-flow/std", "getrandom/std"]
 unstable = []
 
 [dependencies]
 async-flow.workspace = true
+getrandom = { version = "0.3", default-features = false }
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 

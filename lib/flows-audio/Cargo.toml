@@ -27,6 +27,7 @@ unstable = []
 
 [dependencies]
 async-flow.workspace = true
+symphonia = { version = "0.5", default-features = false }
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 

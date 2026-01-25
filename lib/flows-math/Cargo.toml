@@ -27,6 +27,7 @@ unstable = []
 
 [dependencies]
 async-flow.workspace = true
+num-traits = { version = "0.2", default-features = false, optional = true }
 tokio.workspace = true
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]

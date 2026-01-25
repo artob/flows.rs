@@ -25,8 +25,35 @@ all = []
 std = ["async-flow/std"]
 unstable = []
 
+# Connectors:
+amqp = []
+dds = ["dep:rustdds"]
+kafka = ["dep:kafka-protocol"]
+mqtt = []
+nats = ["dep:async-nats"]
+nsq = ["dep:nsq-async-rs"]
+postgres = ["dep:tokio-postgres"]
+redis = ["dep:redis"]
+ros1 = []
+ros2 = []
+stomp = ["dep:iridium-stomp"]
+valkey = ["redis"]
+zenoh = ["dep:zenoh"]
+zeromq = ["dep:zeromq"]
+
 [dependencies]
 async-flow.workspace = true
+
+# Connectors:
+async-nats = { version = "0.46", default-features = false, optional = true }
+iridium-stomp = { version = "0.3", default-features = false, optional = true }
+kafka-protocol = { version = "0.17", default-features = false, optional = true }
+nsq-async-rs = { version = "0.1", default-features = false, optional = true }
+redis = { version = "0.32", default-features = false, optional = true }
+rustdds = { version = "0.11", default-features = false, optional = true }
+tokio-postgres = { version = "0.7", default-features = false, optional = true }
+zenoh = { version = "1.7", default-features = false, optional = true }
+zeromq = { version = "0.4", default-features = false, optional = true }
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 
