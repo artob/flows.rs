@@ -15,7 +15,7 @@ use syn::{
 
 /// Optional arguments for the `#[block]` attribute
 #[derive(Debug, Default, FromMeta)]
-struct BlockArgs {
+struct BlockOptions {
     /// Override the generated struct name
     #[darling(default)]
     name: Option<String>,
@@ -25,11 +25,11 @@ pub fn block(attr: TokenStream, item: TokenStream) -> TokenStream {
     let input_fn = parse_macro_input!(item as ItemFn);
 
     // Parse attributes using Darling
-    let args = if attr.is_empty() {
-        BlockArgs::default()
+    let options = if attr.is_empty() {
+        BlockOptions::default()
     } else {
         match NestedMeta::parse_meta_list(attr.into()) {
-            Ok(meta_list) => match BlockArgs::from_list(&meta_list) {
+            Ok(meta_list) => match BlockOptions::from_list(&meta_list) {
                 Ok(args) => args,
                 Err(e) => return TokenStream::from(e.write_errors()),
             },
@@ -38,7 +38,7 @@ pub fn block(attr: TokenStream, item: TokenStream) -> TokenStream {
     };
 
     // Generate struct name: snake_case -> PascalCase
-    let struct_name = args
+    let struct_name = options
         .name
         .map(|n| Ident::new(&n, Span::call_site()))
         .unwrap_or_else(|| {
@@ -52,13 +52,16 @@ pub fn block(attr: TokenStream, item: TokenStream) -> TokenStream {
     let generics = &input_fn.sig.generics;
     let where_clause = &input_fn.sig.generics.where_clause;
 
-    // Process function parameters into struct fields
-    let fields: Vec<_> = input_fn
-        .sig
-        .inputs
-        .iter()
-        .filter_map(|arg| process_arg(arg))
-        .collect();
+    let inputs = input_fn.sig.inputs.clone();
+
+    // Process function parameters into struct fields:
+    let struct_fields: Vec<_> = inputs.iter().filter_map(fn_param_to_struct_field).collect();
+
+    // Process function parameters into constructor parameters:
+    let new_params: Vec<_> = inputs.iter().filter_map(fn_param_to_new_param).collect();
+
+    // Process function parameters into constructor initializers:
+    let new_args: Vec<_> = inputs.iter().filter_map(fn_param_to_name).collect();
 
     // Generate the struct with generics and where clause
     let struct_def = quote! {
@@ -67,7 +70,14 @@ pub fn block(attr: TokenStream, item: TokenStream) -> TokenStream {
         pub struct #struct_name #generics
         #where_clause
         {
-            #(#fields),*
+            #(#struct_fields),*
+        }
+        impl #generics #struct_name #generics
+        #where_clause
+        {
+            pub fn new(#(#new_params),*) -> Self {
+                Self { #(#new_args),* }
+            }
         }
     };
 
@@ -77,20 +87,51 @@ pub fn block(attr: TokenStream, item: TokenStream) -> TokenStream {
     })
 }
 
-/// Process a function argument into a struct field
-fn process_arg(arg: &FnArg) -> Option<proc_macro2::TokenStream> {
+/// Process a function argument into a constructor parameter
+fn fn_param_to_name(arg: &FnArg) -> Option<proc_macro2::TokenStream> {
     let FnArg::Typed(pat_type) = arg else {
         return None; // Skip `self` parameters
     };
 
-    // Extract the field name from the pattern
+    // Extract the field name from the pattern:
     let field_name = extract_ident(&pat_type.pat)?;
 
-    // Convert the type (handle `impl Trait` -> concrete type, `&[T]` -> `Vec<T>`)
+    Some(quote! {
+        #field_name
+    })
+}
+
+/// Process a function argument into a constructor parameter
+fn fn_param_to_new_param(arg: &FnArg) -> Option<proc_macro2::TokenStream> {
+    let FnArg::Typed(pat_type) = arg else {
+        return None; // Skip `self` parameters
+    };
+
+    // Extract the field name from the pattern:
+    let field_name = extract_ident(&pat_type.pat)?;
+
+    // Convert the type (handle `impl Trait` -> concrete type, `&[T]` -> `Vec<T>`):
     let field_type = convert_type(&pat_type.ty);
 
-    // Determine visibility: `pub` for Inputs/Outputs types
-    let visibility = if is_io_type(&pat_type.ty) {
+    Some(quote! {
+        #field_name: #field_type
+    })
+}
+
+/// Process a function argument into a struct field
+fn fn_param_to_struct_field(arg: &FnArg) -> Option<proc_macro2::TokenStream> {
+    let FnArg::Typed(pat_type) = arg else {
+        return None; // Skip `self` parameters
+    };
+
+    // Extract the field name from the pattern:
+    let field_name = extract_ident(&pat_type.pat)?;
+
+    // Convert the type (handle `impl Trait` -> concrete type, `&[T]` -> `Vec<T>`):
+    let field_type = convert_type(&pat_type.ty);
+
+    // Determine visibility: `pub` for Inputs/Outputs types:
+    let visibility = if is_port_type(&pat_type.ty) {
         quote! { pub }
     } else {
         quote! {}
@@ -201,7 +242,7 @@ fn extract_generic_arg(segment: &syn::PathSegment) -> Option<proc_macro2::TokenS
 }
 
 /// Check if type is `Inputs<T>` or `Outputs<T>` (should be `pub`)
-fn is_io_type(ty: &Type) -> bool {
+fn is_port_type(ty: &Type) -> bool {
     let type_str = quote!(#ty).to_string();
     type_str.starts_with("Input") || type_str.starts_with("Output")
 }

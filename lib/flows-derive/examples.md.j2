@@ -3,3 +3,18 @@
 ```rust
 use {{ package.name | replace("-", "_") }}::*;
 ```
+
+### Annotating Function Blocks
+
+#### Annotating a block implementation
+
+```rust
+use flows::{Inputs, Outputs, Result, derive::block};
+
+/// A block that splits input strings based on a delimiter.
+#[block]
+async fn split_string(delim: &str, mut inputs: Inputs<String>, outputs: Outputs<String>) -> Result {
+    // ...
+    Ok(())
+}
+```
