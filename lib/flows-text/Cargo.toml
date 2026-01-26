@@ -27,6 +27,7 @@ unstable = []
 
 [dependencies]
 async-flow.workspace = true
+flows-derive.workspace = true
 
 # Features:
 strsim = { version = "0.11", default-features = false, optional = true }

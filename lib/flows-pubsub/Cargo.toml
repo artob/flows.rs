@@ -43,6 +43,7 @@ zeromq = [] # FIXME: "dep:zeromq"
 
 [dependencies]
 async-flow.workspace = true
+flows-derive.workspace = true
 
 # Connectors:
 async-nats = { version = "0.46", default-features = false, optional = true }

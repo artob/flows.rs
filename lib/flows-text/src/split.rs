@@ -2,8 +2,10 @@
 
 use alloc::string::String;
 use async_flow::{Inputs, Outputs, Result};
+use flows_derive::block;
 
 /// A block that splits input strings based on a delimiter.
+#[block]
 pub async fn split_string(
     delimiter: impl AsRef<str>,
     mut inputs: Inputs<String>,

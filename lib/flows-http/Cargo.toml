@@ -33,6 +33,7 @@ rustls = ["dep:hyper-rustls", "dep:rustls", "dep:rustls-platform-verifier"]
 
 [dependencies]
 async-flow.workspace = true
+flows-derive.workspace = true
 http = { version = "1.4", default-features = false }
 hyper = { version = "1", default-features = false, features = ["client"] }
 hyper-util = { version = "0.1", default-features = false, features = ["tokio"] }

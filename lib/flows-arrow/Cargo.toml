@@ -29,6 +29,7 @@ unstable = []
 arrow-array = { version = "57.2", default-features = false }
 arrow-select = { version = "57.2", default-features = false }
 async-flow.workspace = true
+flows-derive.workspace = true
 tokio.workspace = true
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]

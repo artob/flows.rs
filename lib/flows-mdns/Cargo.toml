@@ -27,6 +27,7 @@ unstable = []
 
 [dependencies]
 async-flow.workspace = true
+flows-derive.workspace = true
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 

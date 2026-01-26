@@ -27,6 +27,7 @@ unstable = []
 
 [dependencies]
 async-flow.workspace = true
+flows-derive.workspace = true
 num-traits = { version = "0.2", default-features = false, optional = true }
 tokio.workspace = true
 

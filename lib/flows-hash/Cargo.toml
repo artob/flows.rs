@@ -33,6 +33,7 @@ sha2 = ["dep:sha2"]
 
 [dependencies]
 async-flow.workspace = true
+flows-derive.workspace = true
 
 # Functions:
 md-5 = { version = "0.10", default-features = false, optional = true }

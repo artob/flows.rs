@@ -32,6 +32,7 @@ arrow-schema = { version = "57.2", default-features = false }
 async-flow.workspace = true
 datafusion-common = { version = "52", default-features = false }
 flows-arrow.workspace = true
+flows-derive.workspace = true
 tokio.workspace = true
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]

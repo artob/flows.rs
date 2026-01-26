@@ -27,6 +27,7 @@ unstable = []
 
 [dependencies]
 async-flow.workspace = true
+flows-derive.workspace = true
 hickory-resolver = { version = "0.25", default-features = false }
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
