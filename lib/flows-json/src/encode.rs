@@ -2,9 +2,11 @@
 
 use alloc::{string::String, vec::Vec};
 use async_flow::{Inputs, Outputs, Port};
+use flows_derive::block;
 use serde_json::{Result, Value};
 
 /// A block that encodes JSON value inputs to bytes outputs.
+#[block]
 pub async fn encode_bytes(
     mut inputs: Inputs<Value>,
     outputs: Outputs<Result<Vec<u8>>>,
@@ -19,6 +21,7 @@ pub async fn encode_bytes(
 }
 
 /// A block that encodes JSON value inputs to string outputs.
+#[block]
 pub async fn encode_string(
     mut inputs: Inputs<Value>,
     outputs: Outputs<Result<String>>,

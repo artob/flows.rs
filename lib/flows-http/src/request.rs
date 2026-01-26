@@ -4,9 +4,11 @@ use super::Result;
 use alloc::boxed::Box;
 use async_flow::{Inputs, Outputs};
 use core::error::Error as StdError;
+use flows_derive::block;
 use hyper::body::{Body, Incoming};
 
 /// A block that outputs HTTP responses corresponding to input HTTP requests.
+#[block]
 pub async fn request<T>(
     mut requests: Inputs<http::Request<T>>,
     responses: Outputs<Result<http::Response<Incoming>>>,

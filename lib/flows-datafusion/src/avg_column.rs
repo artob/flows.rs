@@ -4,12 +4,14 @@ use super::sum_array;
 use arrow_array::RecordBatch;
 use async_flow::{Inputs, Output, Port, Result};
 use datafusion_common::ScalarValue;
+use flows_derive::block;
 
 /// A block that outputs the average of all values in a given column.
 ///
 /// Panics in case the specified column index is out of bounds.
 /// Outputs `ScalarValue::Null` in case the specified column has a non-numeric
 /// datatype.
+#[block]
 pub async fn avg_column(
     column: usize,
     mut inputs: Inputs<RecordBatch>,

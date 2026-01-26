@@ -2,8 +2,10 @@
 
 use arrow_array::RecordBatch;
 use async_flow::{Inputs, Output, Outputs, Port, Result};
+use flows_derive::block;
 
 /// A block that outputs row counts of input record batches.
+#[block]
 pub async fn count_rows(
     mut batches: Inputs<RecordBatch>,
     counts: Outputs<usize>,

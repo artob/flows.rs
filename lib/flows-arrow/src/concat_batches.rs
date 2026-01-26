@@ -3,8 +3,10 @@
 use alloc::vec::Vec;
 use arrow_array::RecordBatch;
 use async_flow::{Inputs, Output, Port, Result};
+use flows_derive::block;
 
 /// A block that concatenates input batches into a single output batch.
+#[block]
 pub async fn concat_batches(
     mut inputs: Inputs<RecordBatch>,
     output: Output<RecordBatch>,
@@ -40,8 +42,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_concat_batches() -> Result<(), Box<dyn Error>> {
-        let mut in_ = Channel::bounded(1);
-        let mut out = Channel::oneshot();
+        let (mut in_, mut out) = (Channel::bounded(1), Channel::oneshot());
         let concatter = tokio::spawn(concat_batches(in_.rx, out.tx));
 
         let batch = record_batch!(("n", Int32, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))?;

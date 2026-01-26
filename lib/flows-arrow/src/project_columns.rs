@@ -2,10 +2,12 @@
 
 use arrow_array::RecordBatch;
 use async_flow::{Inputs, Outputs, Port, Result};
+use flows_derive::block;
 
 /// A block that projects columns from input batches to output batches.
 ///
 /// Panics in case the specified columns are out of bounds.
+#[block]
 pub async fn project_columns(
     columns: &[usize],
     mut inputs: Inputs<RecordBatch>,

@@ -2,9 +2,11 @@
 
 use async_flow::{Inputs, Outputs, Result};
 use core::ops::Add;
+use flows_derive::block;
 use tokio::try_join;
 
 /// A block that outputs the sums of input numbers.
+#[block]
 pub async fn add<T>(mut lhs: Inputs<T>, mut rhs: Inputs<T>, sums: Outputs<T>) -> Result
 where
     T: Add<Output = T>,

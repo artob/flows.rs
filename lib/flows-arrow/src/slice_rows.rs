@@ -2,9 +2,11 @@
 
 use arrow_array::RecordBatch;
 use async_flow::{Inputs, Outputs, Port, Result};
+use flows_derive::block;
 
 /// A block that applies offsets/limits to batches of rows.
 #[allow(unused)]
+#[block]
 pub async fn slice_rows(
     mut offset: usize,
     mut limit: Option<usize>,
