@@ -113,15 +113,15 @@ impl ToTokens for ParamType {
         tokens.extend(match self {
             ParamType::Input(path, _count) => {
                 path_match!(&path,
-                    async_flow?::Input<$t> => quote! { async_flow::model::Input<#t> },
-                    async_flow?::Inputs<$t> => quote! { async_flow::model::Inputs<#t> },
+                    async_flow?::Input<$t> => quote! { ::async_flow::model::Input<#t> },
+                    async_flow?::Inputs<$t> => quote! { ::async_flow::model::Inputs<#t> },
                     _ => unreachable!(),
                 )
             },
             ParamType::Output(path, _count) => {
                 path_match!(&path,
-                    async_flow?::Output<$t> => quote! { async_flow::model::Output<#t> },
-                    async_flow?::Outputs<$t> => quote! { async_flow::model::Outputs<#t> },
+                    async_flow?::Output<$t> => quote! { ::async_flow::model::Output<#t> },
+                    async_flow?::Outputs<$t> => quote! { ::async_flow::model::Outputs<#t> },
                     _ => unreachable!(),
                 )
             },

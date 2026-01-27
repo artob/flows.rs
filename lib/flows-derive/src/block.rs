@@ -69,6 +69,10 @@ pub fn block(attr: TokenStream, input_fn: ItemFn) -> TokenStream {
     // Process function parameters into constructor initializers:
     let new_args: Vec<_> = params.iter().filter_map(param_name).collect();
 
+    // Process function parameters into port IDs for the block definition:
+    let input_ids: Vec<_> = params.iter().filter_map(input_id).collect();
+    let output_ids: Vec<_> = params.iter().filter_map(output_id).collect();
+
     // Process function parameters into trait method parameters:
     // let trait_params: Vec<_> = inputs.iter().filter_map(fn_param_to_new_param).collect();
 
@@ -89,6 +93,30 @@ pub fn block(attr: TokenStream, input_fn: ItemFn) -> TokenStream {
         {
             #fn_vis fn new(#(#new_params),*) -> Self {
                 Self { #(#new_args),* }
+            }
+        }
+
+        #[automatically_derived]
+        #[allow(unused)]
+        impl #generics ::async_flow::model::BlockName for #struct_name #generics
+        #where_clause
+        {
+            fn name(&self) -> ::alloc::borrow::Cow<'_, str> {
+                ::alloc::borrow::Cow::Borrowed(stringify!(#trait_name))
+            }
+        }
+
+        #[automatically_derived]
+        #[allow(unused)]
+        impl #generics ::async_flow::model::BlockDefinition for #struct_name #generics
+        #where_clause
+        {
+            fn inputs(&self) -> ::alloc::vec::Vec<::async_flow::model::InputId> {
+                [#(#input_ids),*].into()
+            }
+
+            fn outputs(&self) -> ::alloc::vec::Vec<::async_flow::model::OutputId> {
+                [#(#output_ids),*].into()
             }
         }
     };
@@ -114,6 +142,22 @@ pub fn block(attr: TokenStream, input_fn: ItemFn) -> TokenStream {
 /// Process a function argument into a constructor parameter
 fn extract_param(param: &FnArg) -> Option<Param> {
     param.try_into().ok()
+}
+
+fn input_id(param: &Param) -> Option<TokenStream> {
+    let field_name = param.name();
+    match &param.typ {
+        ParamType::Input(_, _) => Some(quote! { self.#field_name.id() }),
+        _ => None,
+    }
+}
+
+fn output_id(param: &Param) -> Option<TokenStream> {
+    let field_name = param.name();
+    match &param.typ {
+        ParamType::Output(_, _) => Some(quote! { self.#field_name.id() }),
+        _ => None,
+    }
 }
 
 /// Process a function argument into a constructor parameter
