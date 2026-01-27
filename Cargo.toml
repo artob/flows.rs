@@ -57,7 +57,7 @@ flows-rand = { version = "0.0.6", default-features = false }
 flows-text = { version = "0.0.6", default-features = false }
 flows-video = { version = "0.0.6", default-features = false }
 
-async-flow = { version = "0.1.4", default-features = false, features = ["tokio"] }
+async-flow = { version = "0.1.5", default-features = false, features = ["tokio"] }
 tokio = { version = "1.49", default-features = false, features = ["macros", "rt", "sync"] }
 
 [patch.crates-io]

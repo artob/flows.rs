@@ -348,7 +348,7 @@ dependencies = [
 
 [[package]]
 name = "async-flow"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "async-trait",
  "dogma",
@@ -363,9 +363,9 @@ dependencies = [
 
 [[package]]
 name = "async-flow"
-version = "0.1.4"
+version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b60765a9ecec9dcf0050da6a95573b980f9c67445215654f1c5ae08af8da7cb1"
+checksum = "d9301d32b149afa29350111fdb6941b7fbb8d525aa934b24b77571050999e413"
 dependencies = [
  "async-trait",
  "dogma",
@@ -1272,7 +1272,7 @@ dependencies = [
 name = "flows"
 version = "0.0.6"
 dependencies = [
- "async-flow 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "flows-arrow",
  "flows-audio",
  "flows-datafusion",
@@ -1299,7 +1299,7 @@ dependencies = [
  "arrow-array",
  "arrow-schema",
  "arrow-select",
- "async-flow 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "flows-derive",
  "tokio",
 ]
@@ -1308,7 +1308,7 @@ dependencies = [
 name = "flows-audio"
 version = "0.0.6"
 dependencies = [
- "async-flow 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "flows-derive",
  "symphonia",
 ]
@@ -1320,7 +1320,7 @@ dependencies = [
  "arrow-arith",
  "arrow-array",
  "arrow-schema",
- "async-flow 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "datafusion-common",
  "flows-arrow",
  "flows-derive",
@@ -1331,7 +1331,7 @@ dependencies = [
 name = "flows-derive"
 version = "0.0.6"
 dependencies = [
- "async-flow 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "darling 0.23.0",
  "proc-macro2",
  "quote",
@@ -1344,7 +1344,7 @@ dependencies = [
 name = "flows-dns"
 version = "0.0.6"
 dependencies = [
- "async-flow 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "flows-derive",
  "hickory-resolver",
 ]
@@ -1353,7 +1353,7 @@ dependencies = [
 name = "flows-hash"
 version = "0.0.6"
 dependencies = [
- "async-flow 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "flows-derive",
  "md-5",
  "sha1",
@@ -1364,7 +1364,7 @@ dependencies = [
 name = "flows-http"
 version = "0.0.6"
 dependencies = [
- "async-flow 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "flows-derive",
  "http",
  "hyper",
@@ -1380,7 +1380,7 @@ dependencies = [
 name = "flows-image"
 version = "0.0.6"
 dependencies = [
- "async-flow 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "flows-derive",
  "image",
  "rgb",
@@ -1390,7 +1390,7 @@ dependencies = [
 name = "flows-io"
 version = "0.0.6"
 dependencies = [
- "async-flow 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "flows-derive",
 ]
 
@@ -1398,7 +1398,7 @@ dependencies = [
 name = "flows-json"
 version = "0.0.6"
 dependencies = [
- "async-flow 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "flows-derive",
  "serde_json",
 ]
@@ -1407,7 +1407,7 @@ dependencies = [
 name = "flows-math"
 version = "0.0.6"
 dependencies = [
- "async-flow 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "flows-derive",
  "num-traits",
  "tokio",
@@ -1417,7 +1417,7 @@ dependencies = [
 name = "flows-mdns"
 version = "0.0.6"
 dependencies = [
- "async-flow 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "flows-derive",
 ]
 
@@ -1425,7 +1425,7 @@ dependencies = [
 name = "flows-pubsub"
 version = "0.0.6"
 dependencies = [
- "async-flow 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "async-nats",
  "flows-derive",
  "iridium-stomp",
@@ -1440,7 +1440,7 @@ dependencies = [
 name = "flows-rand"
 version = "0.0.6"
 dependencies = [
- "async-flow 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "flows-derive",
  "getrandom 0.3.4",
 ]
@@ -1449,7 +1449,7 @@ dependencies = [
 name = "flows-text"
 version = "0.0.6"
 dependencies = [
- "async-flow 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "flows-derive",
  "strsim",
  "tokio",
@@ -1459,7 +1459,7 @@ dependencies = [
 name = "flows-video"
 version = "0.0.6"
 dependencies = [
- "async-flow 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "async-flow 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "rav1e",
 ]
 

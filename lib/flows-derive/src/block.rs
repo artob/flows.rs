@@ -111,11 +111,11 @@ pub fn block(attr: TokenStream, input_fn: ItemFn) -> TokenStream {
         impl #generics ::async_flow::model::BlockDefinition for #struct_name #generics
         #where_clause
         {
-            fn inputs(&self) -> ::alloc::vec::Vec<::async_flow::model::InputId> {
+            fn inputs(&self) -> ::alloc::vec::Vec<::async_flow::model::InputPortId> {
                 [#(#input_ids),*].into()
             }
 
-            fn outputs(&self) -> ::alloc::vec::Vec<::async_flow::model::OutputId> {
+            fn outputs(&self) -> ::alloc::vec::Vec<::async_flow::model::OutputPortId> {
                 [#(#output_ids),*].into()
             }
         }
