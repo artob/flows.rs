@@ -1,17 +1,15 @@
 // This is free and unencumbered software released into the public domain.
 
+use super::params::{Param, ParamType};
 use alloc::{
     format,
     string::{String, ToString},
     vec::Vec,
 };
 use darling::{FromMeta, ast::NestedMeta};
-use proc_macro::TokenStream;
-use proc_macro2::Span;
+use proc_macro2::{Span, TokenStream};
 use quote::quote;
-use syn::{
-    FnArg, Ident, ItemFn, Pat, Type, TypeImplTrait, TypeReference, TypeSlice, parse_macro_input,
-};
+use syn::{FnArg, Ident, ItemFn};
 
 /// Optional arguments for the `#[block]` attribute
 #[derive(Debug, Default, FromMeta)]
@@ -21,8 +19,8 @@ struct BlockOptions {
     name: Option<String>,
 }
 
-pub fn block(attr: TokenStream, item: TokenStream) -> TokenStream {
-    let input_fn = parse_macro_input!(item as ItemFn);
+pub fn block(attr: TokenStream, input_fn: ItemFn) -> TokenStream {
+    let fn_vis = input_fn.vis.clone();
 
     // Parse attributes using Darling
     let options = if attr.is_empty() {
@@ -37,37 +35,48 @@ pub fn block(attr: TokenStream, item: TokenStream) -> TokenStream {
         }
     };
 
-    // Generate struct name: snake_case -> PascalCase
-    let struct_name = options
+    // Generate the trait name: snake_case->PascalCase:
+    let trait_name = options
         .name
         .map(|n| Ident::new(&n, Span::call_site()))
         .unwrap_or_else(|| {
             Ident::new(
-                &format!("{}Block", snake_to_pascal(&input_fn.sig.ident.to_string())),
+                &snake_to_pascal(&input_fn.sig.ident.to_string()).to_string(),
                 Span::call_site(),
             )
         });
 
-    // Extract generics and where clause from the function
+    // Generate the struct name: snake_case->PascalCase + "Block":
+    let struct_name = Ident::new(
+        &format!("{}Block", trait_name.to_string()),
+        Span::call_site(),
+    );
+
+    // Extract generics and where clause from the function:
     let generics = &input_fn.sig.generics;
     let where_clause = &input_fn.sig.generics.where_clause;
 
     let inputs = input_fn.sig.inputs.clone();
 
+    let params: Vec<_> = inputs.iter().filter_map(extract_param).collect();
+
     // Process function parameters into struct fields:
-    let struct_fields: Vec<_> = inputs.iter().filter_map(fn_param_to_struct_field).collect();
+    let struct_fields: Vec<_> = params.iter().filter_map(param_to_struct_field).collect(); // TODO
 
     // Process function parameters into constructor parameters:
-    let new_params: Vec<_> = inputs.iter().filter_map(fn_param_to_new_param).collect();
+    let new_params: Vec<_> = params.iter().filter_map(param_name_and_type).collect();
 
     // Process function parameters into constructor initializers:
-    let new_args: Vec<_> = inputs.iter().filter_map(fn_param_to_name).collect();
+    let new_args: Vec<_> = params.iter().filter_map(param_name).collect();
 
-    // Generate the struct with generics and where clause
+    // Process function parameters into trait method parameters:
+    // let trait_params: Vec<_> = inputs.iter().filter_map(fn_param_to_new_param).collect();
+
+    // Generate the struct with generics and where clause:
     let struct_def = quote! {
         #[allow(unused)]
         #[automatically_derived]
-        pub struct #struct_name #generics
+        #fn_vis struct #struct_name #generics
         #where_clause
         {
             #(#struct_fields),*
@@ -75,176 +84,65 @@ pub fn block(attr: TokenStream, item: TokenStream) -> TokenStream {
         impl #generics #struct_name #generics
         #where_clause
         {
-            pub fn new(#(#new_params),*) -> Self {
+            #fn_vis fn new(#(#new_params),*) -> Self {
                 Self { #(#new_args),* }
             }
         }
     };
 
-    TokenStream::from(quote! {
+    // Generate the trait with generics and where clause:
+    // let _trait_def = quote! {
+    //     #[allow(unused)]
+    //     #[automatically_derived]
+    //     #fn_vis trait #trait_name
+    //     {
+    //         fn new #generics (&self, #(#trait_params),*) -> #struct_name #generics {
+    //             todo!()
+    //         }
+    //     }
+    // };
+
+    quote! {
         #struct_def
         #input_fn
-    })
+    }
 }
 
 /// Process a function argument into a constructor parameter
-fn fn_param_to_name(arg: &FnArg) -> Option<proc_macro2::TokenStream> {
-    let FnArg::Typed(pat_type) = arg else {
-        return None; // Skip `self` parameters
-    };
-
-    // Extract the field name from the pattern:
-    let field_name = extract_ident(&pat_type.pat)?;
-
-    Some(quote! {
-        #field_name
-    })
+fn extract_param(param: &FnArg) -> Option<Param> {
+    param.try_into().ok()
 }
 
 /// Process a function argument into a constructor parameter
-fn fn_param_to_new_param(arg: &FnArg) -> Option<proc_macro2::TokenStream> {
-    let FnArg::Typed(pat_type) = arg else {
-        return None; // Skip `self` parameters
-    };
-
-    // Extract the field name from the pattern:
-    let field_name = extract_ident(&pat_type.pat)?;
-
-    // Convert the type (handle `impl Trait` -> concrete type, `&[T]` -> `Vec<T>`):
-    let field_type = convert_type(&pat_type.ty);
-
-    Some(quote! {
-        #field_name: #field_type
-    })
+fn param_name(param: &Param) -> Option<TokenStream> {
+    let field_name = param.name();
+    match &param.typ.owned() {
+        ParamType::Other(t) => Some(match &t.xform {
+            None => quote! { #field_name },
+            Some(xform) => quote! { #field_name: #field_name.#xform },
+        }),
+        _ => Some(quote! { #field_name: Default::default() }),
+    }
 }
 
-/// Process a function argument into a struct field
-fn fn_param_to_struct_field(arg: &FnArg) -> Option<proc_macro2::TokenStream> {
-    let FnArg::Typed(pat_type) = arg else {
-        return None; // Skip `self` parameters
-    };
-
-    // Extract the field name from the pattern:
-    let field_name = extract_ident(&pat_type.pat)?;
-
-    // Convert the type (handle `impl Trait` -> concrete type, `&[T]` -> `Vec<T>`):
-    let field_type = convert_type(&pat_type.ty);
-
-    // Determine visibility: `pub` for Inputs/Outputs types:
-    let visibility = if is_port_type(&pat_type.ty) {
-        quote! { pub }
-    } else {
-        quote! {}
-    };
-
-    Some(quote! {
-        #visibility #field_name: #field_type
-    })
-}
-
-/// Extract identifier from a pattern, ignoring `mut`
-fn extract_ident(pat: &Pat) -> Option<&Ident> {
-    match pat {
-        Pat::Ident(pat_ident) => Some(&pat_ident.ident),
+/// Process a function argument into a constructor parameter
+fn param_name_and_type(param: &Param) -> Option<TokenStream> {
+    match &param.typ {
+        ParamType::Other(_) => {
+            let field_name = param.name();
+            let field_type = &param.typ;
+            Some(quote! { #field_name: #field_type })
+        },
         _ => None,
     }
 }
 
-/// Convert types that can't be owned directly into owned equivalents
-/// For example, convert `impl AsRef<str>` to a `String`.
-fn convert_type(ty: &Type) -> proc_macro2::TokenStream {
-    match ty {
-        // Handle `impl Trait` -> concrete type
-        Type::ImplTrait(impl_trait) => convert_impl_trait(impl_trait),
-
-        // Handle `&[T]` -> `Vec<T>`
-        Type::Reference(type_ref) => convert_reference(type_ref),
-
-        // Pass through other types unchanged
-        other => quote! { #other },
-    }
-}
-
-/// Convert reference types to owned equivalents
-fn convert_reference(type_ref: &TypeReference) -> proc_macro2::TokenStream {
-    match type_ref.elem.as_ref() {
-        // `&[T]` -> `Vec<T>`
-        Type::Slice(TypeSlice { elem, .. }) => {
-            let inner = convert_type(elem); // Recursively convert inner type
-            quote! { ::alloc::vec::Vec<#inner> }
-        },
-
-        // `&str` -> `String`
-        Type::Path(type_path) if is_str_type(type_path) => {
-            quote! { ::alloc::string::String }
-        },
-
-        // Other references: try to convert inner type, keep as-is if unchanged
-        other => {
-            let converted = convert_type(other);
-            // If the inner type was converted, return it without the reference
-            // Otherwise, keep the original reference type
-            if quote!(#other).to_string() != converted.to_string() {
-                converted
-            } else {
-                quote! { #type_ref }
-            }
-        },
-    }
-}
-
-/// Check if a type path is `str`
-fn is_str_type(type_path: &syn::TypePath) -> bool {
-    type_path.qself.is_none()
-        && type_path.path.segments.len() == 1
-        && type_path
-            .path
-            .segments
-            .first()
-            .map(|s| s.ident == "str")
-            .unwrap_or(false)
-}
-
-/// Convert impl trait bounds to a concrete type
-fn convert_impl_trait(impl_trait: &TypeImplTrait) -> proc_macro2::TokenStream {
-    for bound in &impl_trait.bounds {
-        if let syn::TypeParamBound::Trait(trait_bound) = bound {
-            let path = &trait_bound.path;
-            let last_segment = path.segments.last();
-
-            if let Some(segment) = last_segment {
-                let trait_name = segment.ident.to_string();
-
-                // Map common traits to concrete types
-                return match trait_name.as_str() {
-                    "AsRef" => quote! { ::alloc::string::String }, // FIXME
-                    "Into" => extract_generic_arg(segment)
-                        .unwrap_or_else(|| quote! { ::alloc::string::String }),
-                    "ToString" => quote! { ::alloc::string::String },
-                    "Display" => quote! { ::alloc::string::String },
-                    "Iterator" => quote! { ::alloc::vec::Vec<_> },
-                    _ => quote! { ::alloc::string::String }, // Default fallback
-                };
-            }
-        }
-    }
-    quote! { ::alloc::string::String }
-}
-
-/// Extract the generic argument from a path segment (e.g., `AsRef<str>` -> `str`)
-fn extract_generic_arg(segment: &syn::PathSegment) -> Option<proc_macro2::TokenStream> {
-    if let syn::PathArguments::AngleBracketed(args) = &segment.arguments {
-        if let Some(syn::GenericArgument::Type(ty)) = args.args.first() {
-            return Some(quote! { #ty });
-        }
-    }
-    None
-}
-
-/// Check if type is `Inputs<T>` or `Outputs<T>` (should be `pub`)
-fn is_port_type(ty: &Type) -> bool {
-    let type_str = quote!(#ty).to_string();
-    type_str.starts_with("Input") || type_str.starts_with("Output")
+/// Process a function argument into a struct field
+fn param_to_struct_field(param: &Param) -> Option<TokenStream> {
+    // Convert the type (handle `impl Trait` -> concrete type, `&[T]` -> `Vec<T>`):
+    let field_name = param.name();
+    let field_type = &param.typ.owned();
+    Some(quote! { #field_name: #field_type })
 }
 
 /// Convert snake_case to PascalCase

@@ -18,3 +18,26 @@ async fn split_string(delim: &str, mut inputs: Inputs<String>, outputs: Outputs<
     Ok(())
 }
 ```
+
+### Derived Macro Output
+
+```rust
+pub struct SplitStringBlock {
+    delimiter: String,
+    pub inputs: Inputs<String>,
+    pub outputs: Outputs<String>,
+}
+```
+
+```rust
+pub trait SplitString {
+    fn new(
+        &self,
+        delimiter: String,
+        inputs: Inputs<String>,
+        outputs: Outputs<String>,
+    ) -> SplitStringBlock {
+        // ...
+    }
+}
+```

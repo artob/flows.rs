@@ -62,13 +62,14 @@ use flows_text::*;
 #### Implementing a `split_string` block
 
 ```rust
-use flows::{Inputs, Outputs, Result};
+use flows::{Inputs, Outputs, Result, derive::block};
 
 /// A block that splits input strings based on a delimiter.
-async fn split_string(delim: &str, mut ins: Inputs<String>, outs: Outputs<String>) -> Result {
-    while let Some(input) = ins.recv().await? {
+#[block]
+async fn split_string(delim: &str, mut inputs: Inputs<String>, outputs: Outputs<String>) -> Result {
+    while let Some(input) = inputs.recv().await? {
         for output in input.split(delim) {
-            outs.send(output.into()).await?;
+            outputs.send(output.into()).await?;
         }
     }
     Ok(())

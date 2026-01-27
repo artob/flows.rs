@@ -57,6 +57,44 @@ cargo add flows-derive
 use flows_derive::*;
 ```
 
+### Annotating Function Blocks
+
+#### Annotating a block implementation
+
+```rust
+use flows::{Inputs, Outputs, Result, derive::block};
+
+/// A block that splits input strings based on a delimiter.
+#[block]
+async fn split_string(delim: &str, mut inputs: Inputs<String>, outputs: Outputs<String>) -> Result {
+    // ...
+    Ok(())
+}
+```
+
+### Derived Macro Output
+
+```rust
+pub struct SplitStringBlock {
+    delimiter: String,
+    pub inputs: Inputs<String>,
+    pub outputs: Outputs<String>,
+}
+```
+
+```rust
+pub trait SplitString {
+    fn new(
+        &self,
+        delimiter: String,
+        inputs: Inputs<String>,
+        outputs: Outputs<String>,
+    ) -> SplitStringBlock {
+        // ...
+    }
+}
+```
+
 ## 📚 Reference
 
 [docs.rs/flows-derive](https://docs.rs/flows-derive)
