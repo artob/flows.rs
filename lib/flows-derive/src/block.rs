@@ -22,7 +22,7 @@ struct BlockOptions {
 pub fn block(attr: TokenStream, input_fn: ItemFn) -> TokenStream {
     let fn_vis = input_fn.vis.clone();
 
-    // Parse attributes using Darling
+    // Parse attributes using Darling:
     let options = if attr.is_empty() {
         BlockOptions::default()
     } else {
@@ -74,13 +74,16 @@ pub fn block(attr: TokenStream, input_fn: ItemFn) -> TokenStream {
 
     // Generate the struct with generics and where clause:
     let struct_def = quote! {
-        #[allow(unused)]
         #[automatically_derived]
+        #[allow(unused)]
         #fn_vis struct #struct_name #generics
         #where_clause
         {
             #(#struct_fields),*
         }
+
+        #[automatically_derived]
+        #[allow(unused)]
         impl #generics #struct_name #generics
         #where_clause
         {
@@ -142,7 +145,8 @@ fn param_to_struct_field(param: &Param) -> Option<TokenStream> {
     // Convert the type (handle `impl Trait` -> concrete type, `&[T]` -> `Vec<T>`):
     let field_name = param.name();
     let field_type = &param.typ.owned();
-    Some(quote! { #field_name: #field_type })
+    let visibility = param.visibility();
+    Some(quote! { #visibility #field_name: #field_type })
 }
 
 /// Convert snake_case to PascalCase

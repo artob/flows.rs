@@ -41,8 +41,14 @@
     },
     "features": {
       "default": [
-        "all",
+        "core",
         "std"
+      ],
+      "core": [
+        "derive",
+        "io",
+        "math",
+        "text"
       ],
       "all": [
         "arrow",
@@ -138,114 +144,82 @@
       },
       "flows-arrow": {
         "workspace": true,
-        "features": [
-          "all"
-        ],
+        "features": [],
         "optional": true
       },
       "flows-audio": {
         "workspace": true,
-        "features": [
-          "all"
-        ],
+        "features": [],
         "optional": true
       },
       "flows-datafusion": {
         "workspace": true,
-        "features": [
-          "all"
-        ],
+        "features": [],
         "optional": true
       },
       "flows-derive": {
         "workspace": true,
-        "features": [
-          "all"
-        ],
+        "features": [],
         "optional": true
       },
       "flows-dns": {
         "workspace": true,
-        "features": [
-          "all"
-        ],
+        "features": [],
         "optional": true
       },
       "flows-hash": {
         "workspace": true,
-        "features": [
-          "all"
-        ],
+        "features": [],
         "optional": true
       },
       "flows-http": {
         "workspace": true,
-        "features": [
-          "all"
-        ],
+        "features": [],
         "optional": true
       },
       "flows-image": {
         "workspace": true,
-        "features": [
-          "all"
-        ],
+        "features": [],
         "optional": true
       },
       "flows-io": {
         "workspace": true,
-        "features": [
-          "all"
-        ],
+        "features": [],
         "optional": true
       },
       "flows-json": {
         "workspace": true,
-        "features": [
-          "all"
-        ],
+        "features": [],
         "optional": true
       },
       "flows-math": {
         "workspace": true,
-        "features": [
-          "all"
-        ],
+        "features": [],
         "optional": true
       },
       "flows-mdns": {
         "workspace": true,
-        "features": [
-          "all"
-        ],
+        "features": [],
         "optional": true
       },
       "flows-pubsub": {
         "workspace": true,
-        "features": [
-          "all"
-        ],
+        "features": [],
         "optional": true
       },
       "flows-rand": {
         "workspace": true,
-        "features": [
-          "all"
-        ],
+        "features": [],
         "optional": true
       },
       "flows-text": {
         "workspace": true,
-        "features": [
-          "all"
-        ],
+        "features": [],
         "optional": true
       },
       "flows-video": {
         "workspace": true,
-        "features": [
-          "all"
-        ],
+        "features": [],
         "optional": true
       }
     },
@@ -314,6 +288,9 @@
         "default-features": false
       },
       "async-flow": {
+        "workspace": true
+      },
+      "flows-derive": {
         "workspace": true
       },
       "tokio": {
@@ -390,6 +367,13 @@
     "dependencies": {
       "async-flow": {
         "workspace": true
+      },
+      "flows-derive": {
+        "workspace": true
+      },
+      "symphonia": {
+        "version": "0.5",
+        "default-features": false
       }
     },
     "target": {
@@ -473,6 +457,9 @@
       "flows-arrow": {
         "workspace": true
       },
+      "flows-derive": {
+        "workspace": true
+      },
       "tokio": {
         "workspace": true
       }
@@ -543,7 +530,22 @@
     "dependencies": {
       "async-flow": {
         "workspace": true
-      }
+      },
+      "darling": {
+        "version": "0.23",
+        "default-features": false
+      },
+      "quote": "1.0",
+      "proc-macro2": "1.0",
+      "syn": {
+        "version": "2.0",
+        "features": [
+          "full",
+          "extra-traits"
+        ]
+      },
+      "syn-match": "0.3",
+      "syn-path": "2.1"
     },
     "target": {
       "cfg(not(target_family = \"wasm\"))": {
@@ -552,6 +554,9 @@
       "cfg(target_family = \"wasm\")": {
         "dependencies": {}
       }
+    },
+    "lib": {
+      "proc-macro": true
     }
   },
   {
@@ -606,6 +611,13 @@
     "dependencies": {
       "async-flow": {
         "workspace": true
+      },
+      "flows-derive": {
+        "workspace": true
+      },
+      "hickory-resolver": {
+        "version": "0.25",
+        "default-features": false
       }
     },
     "target": {
@@ -664,11 +676,39 @@
       "std": [
         "async-flow/std"
       ],
-      "unstable": []
+      "unstable": [],
+      "blake3": [],
+      "md5": [
+        "dep:md-5"
+      ],
+      "sha1": [
+        "dep:sha1"
+      ],
+      "sha2": [
+        "dep:sha2"
+      ]
     },
     "dependencies": {
       "async-flow": {
         "workspace": true
+      },
+      "flows-derive": {
+        "workspace": true
+      },
+      "md-5": {
+        "version": "0.10",
+        "default-features": false,
+        "optional": true
+      },
+      "sha1": {
+        "version": "0.10",
+        "default-features": false,
+        "optional": true
+      },
+      "sha2": {
+        "version": "0.10",
+        "default-features": false,
+        "optional": true
       }
     },
     "target": {
@@ -753,6 +793,9 @@
     },
     "dependencies": {
       "async-flow": {
+        "workspace": true
+      },
+      "flows-derive": {
         "workspace": true
       },
       "http": {
@@ -864,6 +907,17 @@
     "dependencies": {
       "async-flow": {
         "workspace": true
+      },
+      "flows-derive": {
+        "workspace": true
+      },
+      "image": {
+        "version": "0.25",
+        "default-features": false
+      },
+      "rgb": {
+        "version": "0.8",
+        "default-features": false
       }
     },
     "target": {
@@ -926,6 +980,9 @@
     },
     "dependencies": {
       "async-flow": {
+        "workspace": true
+      },
+      "flows-derive": {
         "workspace": true
       }
     },
@@ -994,6 +1051,9 @@
         "features": [
           "serde"
         ]
+      },
+      "flows-derive": {
+        "workspace": true
       },
       "serde_json": {
         "version": "1",
@@ -1065,6 +1125,14 @@
       "async-flow": {
         "workspace": true
       },
+      "flows-derive": {
+        "workspace": true
+      },
+      "num-traits": {
+        "version": "0.2",
+        "default-features": false,
+        "optional": true
+      },
       "tokio": {
         "workspace": true
       }
@@ -1135,6 +1203,9 @@
     "dependencies": {
       "async-flow": {
         "workspace": true
+      },
+      "flows-derive": {
+        "workspace": true
       }
     },
     "target": {
@@ -1193,11 +1264,79 @@
       "std": [
         "async-flow/std"
       ],
-      "unstable": []
+      "unstable": [],
+      "amqp": [],
+      "dds": [
+        "dep:rustdds"
+      ],
+      "kafka": [
+        "dep:kafka-protocol"
+      ],
+      "mqtt": [],
+      "nats": [
+        "dep:async-nats"
+      ],
+      "nsq": [],
+      "postgres": [
+        "dep:tokio-postgres"
+      ],
+      "redis": [
+        "dep:redis"
+      ],
+      "ros1": [],
+      "ros2": [],
+      "stomp": [
+        "dep:iridium-stomp"
+      ],
+      "valkey": [
+        "redis"
+      ],
+      "zenoh": [
+        "dep:zenoh"
+      ],
+      "zeromq": []
     },
     "dependencies": {
       "async-flow": {
         "workspace": true
+      },
+      "flows-derive": {
+        "workspace": true
+      },
+      "async-nats": {
+        "version": "0.46",
+        "default-features": false,
+        "optional": true
+      },
+      "iridium-stomp": {
+        "version": "0.3",
+        "default-features": false,
+        "optional": true
+      },
+      "kafka-protocol": {
+        "version": "0.17",
+        "default-features": false,
+        "optional": true
+      },
+      "redis": {
+        "version": "0.32",
+        "default-features": false,
+        "optional": true
+      },
+      "rustdds": {
+        "version": "0.11",
+        "default-features": false,
+        "optional": true
+      },
+      "tokio-postgres": {
+        "version": "0.7",
+        "default-features": false,
+        "optional": true
+      },
+      "zenoh": {
+        "version": "1.7",
+        "default-features": false,
+        "optional": true
       }
     },
     "target": {
@@ -1254,13 +1393,21 @@
       ],
       "all": [],
       "std": [
-        "async-flow/std"
+        "async-flow/std",
+        "getrandom/std"
       ],
       "unstable": []
     },
     "dependencies": {
       "async-flow": {
         "workspace": true
+      },
+      "flows-derive": {
+        "workspace": true
+      },
+      "getrandom": {
+        "version": "0.3",
+        "default-features": false
       }
     },
     "target": {
@@ -1324,6 +1471,14 @@
     "dependencies": {
       "async-flow": {
         "workspace": true
+      },
+      "flows-derive": {
+        "workspace": true
+      },
+      "strsim": {
+        "version": "0.11",
+        "default-features": false,
+        "optional": true
       }
     },
     "target": {
@@ -1387,11 +1542,19 @@
       "std": [
         "async-flow/std"
       ],
-      "unstable": []
+      "unstable": [],
+      "av1": [
+        "dep:rav1e"
+      ]
     },
     "dependencies": {
       "async-flow": {
         "workspace": true
+      },
+      "rav1e": {
+        "version": "0.8",
+        "default-features": false,
+        "optional": true
       }
     },
     "target": {

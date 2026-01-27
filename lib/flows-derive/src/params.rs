@@ -21,20 +21,22 @@ impl Param {
     pub fn name(&self) -> Ident {
         Ident::new(&self.name, Span::call_site())
     }
+
+    /// Determines visibility: `pub` for port types.
+    pub fn visibility(&self) -> TokenStream {
+        if self.is_port() {
+            quote! { pub }
+        } else {
+            quote! {}
+        }
+    }
 }
 
 impl ToTokens for Param {
     fn to_tokens(&self, tokens: &mut TokenStream) {
         let field_name = self.name();
         let field_type = &self.typ;
-
-        // Determine visibility: `pub` for port types:
-        let visibility = if self.is_port() {
-            quote! { pub }
-        } else {
-            quote! {}
-        };
-
+        let visibility = self.visibility();
         tokens.extend(quote! {
             #visibility #field_name: #field_type
         });
