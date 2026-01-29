@@ -9,7 +9,7 @@ PACKAGES = Dir['lib/**/Cargo.toml'].sort_by do |path|
   path.delete_prefix('lib/').delete_suffix('/Cargo.toml')
 end.map { Pathname(it) }.freeze
 
-task default: %w(packages.json packages.md readmes)
+task default: %w(.cargo/packages.json .cargo/packages.md readmes)
 
 task readmes: PACKAGES.map { it.parent.join('README.md').to_s }.to_a - %w[lib/flows/README.md]
 
@@ -47,13 +47,13 @@ PACKAGES.each do |package_toml|
   end
 end
 
-file 'packages.json': PACKAGES do |t|
+file '.cargo/packages.json': PACKAGES do |t|
   File.open(t.name, 'w') do |out|
     out.puts generate_json(t.prerequisites)
   end
 end
 
-file 'packages.md': PACKAGES do |t|
+file '.cargo/packages.md': PACKAGES do |t|
   File.open(t.name, 'w') do |out|
     out.puts generate_markdown(t.prerequisites)
   end
